@@ -1,0 +1,465 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		41994A491A8CD60000DE4AE6 /* HoneyMoon.h in Headers */ = {isa = PBXBuildFile; fileRef = 41994A481A8CD60000DE4AE6 /* HoneyMoon.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		41994A4F1A8CD60000DE4AE6 /* HoneyMoon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41994A431A8CD60000DE4AE6 /* HoneyMoon.framework */; };
+		41994A561A8CD60000DE4AE6 /* HoneyMoonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41994A551A8CD60000DE4AE6 /* HoneyMoonTests.swift */; };
+		41994A6A1A8CD6C600DE4AE6 /* GKScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41994A671A8CD6C600DE4AE6 /* GKScene.swift */; };
+		41994A6B1A8CD6C600DE4AE6 /* GKSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41994A681A8CD6C600DE4AE6 /* GKSceneDelegate.swift */; };
+		41994A6C1A8CD6C600DE4AE6 /* GKViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41994A691A8CD6C600DE4AE6 /* GKViewController.swift */; };
+		41994A991A8CDB4300DE4AE6 /* easing.c in Sources */ = {isa = PBXBuildFile; fileRef = 41994A921A8CDB4300DE4AE6 /* easing.c */; };
+		41994A9A1A8CDB4300DE4AE6 /* easing.h in Headers */ = {isa = PBXBuildFile; fileRef = 41994A931A8CDB4300DE4AE6 /* easing.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		41994A9B1A8CDB4300DE4AE6 /* EasingDeclarations.h in Headers */ = {isa = PBXBuildFile; fileRef = 41994A941A8CDB4300DE4AE6 /* EasingDeclarations.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		41994A9C1A8CDB4300DE4AE6 /* SKEase.h in Headers */ = {isa = PBXBuildFile; fileRef = 41994A951A8CDB4300DE4AE6 /* SKEase.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		41994A9D1A8CDB4300DE4AE6 /* SKEase.m in Sources */ = {isa = PBXBuildFile; fileRef = 41994A961A8CDB4300DE4AE6 /* SKEase.m */; };
+		41994A9F1A8CDB4300DE4AE6 /* SpriteKit-Easing-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 41994A981A8CDB4300DE4AE6 /* SpriteKit-Easing-Prefix.pch */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		41994A501A8CD60000DE4AE6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 41994A3A1A8CD60000DE4AE6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 41994A421A8CD60000DE4AE6;
+			remoteInfo = HoneyMoon;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		41994A431A8CD60000DE4AE6 /* HoneyMoon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HoneyMoon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		41994A471A8CD60000DE4AE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		41994A481A8CD60000DE4AE6 /* HoneyMoon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HoneyMoon.h; sourceTree = "<group>"; };
+		41994A4E1A8CD60000DE4AE6 /* HoneyMoonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HoneyMoonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		41994A541A8CD60000DE4AE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		41994A551A8CD60000DE4AE6 /* HoneyMoonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoneyMoonTests.swift; sourceTree = "<group>"; };
+		41994A671A8CD6C600DE4AE6 /* GKScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GKScene.swift; sourceTree = "<group>"; };
+		41994A681A8CD6C600DE4AE6 /* GKSceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GKSceneDelegate.swift; sourceTree = "<group>"; };
+		41994A691A8CD6C600DE4AE6 /* GKViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GKViewController.swift; sourceTree = "<group>"; };
+		41994A921A8CDB4300DE4AE6 /* easing.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = easing.c; sourceTree = "<group>"; };
+		41994A931A8CDB4300DE4AE6 /* easing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = easing.h; sourceTree = "<group>"; };
+		41994A941A8CDB4300DE4AE6 /* EasingDeclarations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasingDeclarations.h; sourceTree = "<group>"; };
+		41994A951A8CDB4300DE4AE6 /* SKEase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKEase.h; sourceTree = "<group>"; };
+		41994A961A8CDB4300DE4AE6 /* SKEase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKEase.m; sourceTree = "<group>"; };
+		41994A981A8CDB4300DE4AE6 /* SpriteKit-Easing-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SpriteKit-Easing-Prefix.pch"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		41994A3F1A8CD60000DE4AE6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		41994A4B1A8CD60000DE4AE6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				41994A4F1A8CD60000DE4AE6 /* HoneyMoon.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		41994A391A8CD60000DE4AE6 = {
+			isa = PBXGroup;
+			children = (
+				41994A451A8CD60000DE4AE6 /* HoneyMoon */,
+				41994A521A8CD60000DE4AE6 /* HoneyMoonTests */,
+				41994A441A8CD60000DE4AE6 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		41994A441A8CD60000DE4AE6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				41994A431A8CD60000DE4AE6 /* HoneyMoon.framework */,
+				41994A4E1A8CD60000DE4AE6 /* HoneyMoonTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		41994A451A8CD60000DE4AE6 /* HoneyMoon */ = {
+			isa = PBXGroup;
+			children = (
+				41994A671A8CD6C600DE4AE6 /* GKScene.swift */,
+				41994A681A8CD6C600DE4AE6 /* GKSceneDelegate.swift */,
+				41994A691A8CD6C600DE4AE6 /* GKViewController.swift */,
+				41994A481A8CD60000DE4AE6 /* HoneyMoon.h */,
+				41994A911A8CDB4300DE4AE6 /* SpriteKit-Easing */,
+				41994A461A8CD60000DE4AE6 /* Supporting Files */,
+			);
+			path = HoneyMoon;
+			sourceTree = "<group>";
+		};
+		41994A461A8CD60000DE4AE6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				41994A471A8CD60000DE4AE6 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		41994A521A8CD60000DE4AE6 /* HoneyMoonTests */ = {
+			isa = PBXGroup;
+			children = (
+				41994A551A8CD60000DE4AE6 /* HoneyMoonTests.swift */,
+				41994A531A8CD60000DE4AE6 /* Supporting Files */,
+			);
+			path = HoneyMoonTests;
+			sourceTree = "<group>";
+		};
+		41994A531A8CD60000DE4AE6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				41994A541A8CD60000DE4AE6 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		41994A911A8CDB4300DE4AE6 /* SpriteKit-Easing */ = {
+			isa = PBXGroup;
+			children = (
+				41994A921A8CDB4300DE4AE6 /* easing.c */,
+				41994A931A8CDB4300DE4AE6 /* easing.h */,
+				41994A941A8CDB4300DE4AE6 /* EasingDeclarations.h */,
+				41994A951A8CDB4300DE4AE6 /* SKEase.h */,
+				41994A961A8CDB4300DE4AE6 /* SKEase.m */,
+				41994A981A8CDB4300DE4AE6 /* SpriteKit-Easing-Prefix.pch */,
+			);
+			path = "SpriteKit-Easing";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		41994A401A8CD60000DE4AE6 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				41994A491A8CD60000DE4AE6 /* HoneyMoon.h in Headers */,
+				41994A9F1A8CDB4300DE4AE6 /* SpriteKit-Easing-Prefix.pch in Headers */,
+				41994A9A1A8CDB4300DE4AE6 /* easing.h in Headers */,
+				41994A9B1A8CDB4300DE4AE6 /* EasingDeclarations.h in Headers */,
+				41994A9C1A8CDB4300DE4AE6 /* SKEase.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		41994A421A8CD60000DE4AE6 /* HoneyMoon */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 41994A591A8CD60000DE4AE6 /* Build configuration list for PBXNativeTarget "HoneyMoon" */;
+			buildPhases = (
+				41994A3E1A8CD60000DE4AE6 /* Sources */,
+				41994A3F1A8CD60000DE4AE6 /* Frameworks */,
+				41994A401A8CD60000DE4AE6 /* Headers */,
+				41994A411A8CD60000DE4AE6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HoneyMoon;
+			productName = HoneyMoon;
+			productReference = 41994A431A8CD60000DE4AE6 /* HoneyMoon.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		41994A4D1A8CD60000DE4AE6 /* HoneyMoonTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 41994A5C1A8CD60000DE4AE6 /* Build configuration list for PBXNativeTarget "HoneyMoonTests" */;
+			buildPhases = (
+				41994A4A1A8CD60000DE4AE6 /* Sources */,
+				41994A4B1A8CD60000DE4AE6 /* Frameworks */,
+				41994A4C1A8CD60000DE4AE6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				41994A511A8CD60000DE4AE6 /* PBXTargetDependency */,
+			);
+			name = HoneyMoonTests;
+			productName = HoneyMoonTests;
+			productReference = 41994A4E1A8CD60000DE4AE6 /* HoneyMoonTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		41994A3A1A8CD60000DE4AE6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = peferron;
+				TargetAttributes = {
+					41994A421A8CD60000DE4AE6 = {
+						CreatedOnToolsVersion = 6.3;
+					};
+					41994A4D1A8CD60000DE4AE6 = {
+						CreatedOnToolsVersion = 6.3;
+					};
+				};
+			};
+			buildConfigurationList = 41994A3D1A8CD60000DE4AE6 /* Build configuration list for PBXProject "HoneyMoon" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 41994A391A8CD60000DE4AE6;
+			productRefGroup = 41994A441A8CD60000DE4AE6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				41994A421A8CD60000DE4AE6 /* HoneyMoon */,
+				41994A4D1A8CD60000DE4AE6 /* HoneyMoonTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		41994A411A8CD60000DE4AE6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		41994A4C1A8CD60000DE4AE6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		41994A3E1A8CD60000DE4AE6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				41994A991A8CDB4300DE4AE6 /* easing.c in Sources */,
+				41994A6A1A8CD6C600DE4AE6 /* GKScene.swift in Sources */,
+				41994A6B1A8CD6C600DE4AE6 /* GKSceneDelegate.swift in Sources */,
+				41994A6C1A8CD6C600DE4AE6 /* GKViewController.swift in Sources */,
+				41994A9D1A8CDB4300DE4AE6 /* SKEase.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		41994A4A1A8CD60000DE4AE6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				41994A561A8CD60000DE4AE6 /* HoneyMoonTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		41994A511A8CD60000DE4AE6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 41994A421A8CD60000DE4AE6 /* HoneyMoon */;
+			targetProxy = 41994A501A8CD60000DE4AE6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		41994A571A8CD60000DE4AE6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		41994A581A8CD60000DE4AE6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		41994A5A1A8CD60000DE4AE6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = HoneyMoon/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		41994A5B1A8CD60000DE4AE6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = HoneyMoon/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+			};
+			name = Release;
+		};
+		41994A5D1A8CD60000DE4AE6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = HoneyMoonTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		41994A5E1A8CD60000DE4AE6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = HoneyMoonTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		41994A3D1A8CD60000DE4AE6 /* Build configuration list for PBXProject "HoneyMoon" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				41994A571A8CD60000DE4AE6 /* Debug */,
+				41994A581A8CD60000DE4AE6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		41994A591A8CD60000DE4AE6 /* Build configuration list for PBXNativeTarget "HoneyMoon" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				41994A5A1A8CD60000DE4AE6 /* Debug */,
+				41994A5B1A8CD60000DE4AE6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		41994A5C1A8CD60000DE4AE6 /* Build configuration list for PBXNativeTarget "HoneyMoonTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				41994A5D1A8CD60000DE4AE6 /* Debug */,
+				41994A5E1A8CD60000DE4AE6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 41994A3A1A8CD60000DE4AE6 /* Project object */;
+}

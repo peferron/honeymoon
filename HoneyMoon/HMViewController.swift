@@ -1,14 +1,6 @@
-//
-//  GKViewController.swift
-//  SpriteKitGame
-//
-//  Created by Mat on 12/7/14.
-//  Copyright (c) 2014 Mat. All rights reserved.
-//
-
 import SpriteKit
 
-public class GKViewController: UIViewController, GKSceneDelegate {
+public class HMViewController: UIViewController, HMSceneDelegate {
     var incoming: SKView?
     var outgoing: SKView?
 
@@ -25,7 +17,7 @@ public class GKViewController: UIViewController, GKSceneDelegate {
         return cachedkeyCommands
     }
 
-    public func presentScene(sceneClass: GKScene.Type) {
+    public func presentScene(sceneClass: HMScene.Type) {
         outgoing = incoming
 
         let incomingScene = sceneClass.unarchiveFromFile()
@@ -44,9 +36,9 @@ public class GKViewController: UIViewController, GKSceneDelegate {
         incoming?.presentScene(incomingScene)
     }
 
-    // MARK: - GKSceneDelegate
+    // MARK: - HMSceneDelegate
 
-    public func didFinishForScene(scene: GKScene, nextSceneClass: GKScene.Type) {
+    public func didFinishForScene(scene: HMScene, nextSceneClass: HMScene.Type) {
         println("GKViewController: didFinishForScene: \(scene.filename) -> \(nextSceneClass.classFilename)")
         presentScene(nextSceneClass)
     }
@@ -103,6 +95,6 @@ public class GKViewController: UIViewController, GKSceneDelegate {
     }
 
     func forwardKey(key: String) {
-        (incoming?.scene as? GKScene)?.didReceiveKey(key)
+        (incoming?.scene as? HMScene)?.didReceiveKey(key)
     }
 }

@@ -1,15 +1,7 @@
-//
-//  GKScene.swift
-//  GameKit
-//
-//  Created by Mat on 12/3/14.
-//  Copyright (c) 2014 Mat. All rights reserved.
-//
-
 import SpriteKit
 
-public class GKScene: SKScene {
-    public var sceneDelegate: GKSceneDelegate?
+public class HMScene: SKScene {
+    public var sceneDelegate: HMSceneDelegate?
 
     var filename: String {
         return self.dynamicType.classFilename
@@ -119,12 +111,12 @@ public class GKScene: SKScene {
 
     // MARK: - Class funcs and vars
 
-    class func unarchiveFromFile() -> GKScene {
+    class func unarchiveFromFile() -> HMScene {
         let path = NSBundle.mainBundle().pathForResource(classFilename, ofType: "sks")!
         let sceneData = NSData(contentsOfFile: path, options: .DataReadingMappedIfSafe, error: nil)!
         let archiver = NSKeyedUnarchiver(forReadingWithData: sceneData)
         archiver.setClass(classForKeyedUnarchiver(), forClassName: "SKScene")
-        let scene = archiver.decodeObjectForKey(NSKeyedArchiveRootObjectKey) as! GKScene
+        let scene = archiver.decodeObjectForKey(NSKeyedArchiveRootObjectKey) as! HMScene
         archiver.finishDecoding()
         return scene
     }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4168B27A1A93083A005B3C8A /* HMSceneAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4168B2791A93083A005B3C8A /* HMSceneAnimations.swift */; };
 		41994A491A8CD60000DE4AE6 /* HoneyMoon.h in Headers */ = {isa = PBXBuildFile; fileRef = 41994A481A8CD60000DE4AE6 /* HoneyMoon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		41994A4F1A8CD60000DE4AE6 /* HoneyMoon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41994A431A8CD60000DE4AE6 /* HoneyMoon.framework */; };
 		41994A561A8CD60000DE4AE6 /* HoneyMoonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41994A551A8CD60000DE4AE6 /* HoneyMoonTests.swift */; };
@@ -32,6 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4168B2791A93083A005B3C8A /* HMSceneAnimations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMSceneAnimations.swift; sourceTree = "<group>"; };
 		41994A431A8CD60000DE4AE6 /* HoneyMoon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HoneyMoon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		41994A471A8CD60000DE4AE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		41994A481A8CD60000DE4AE6 /* HoneyMoon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HoneyMoon.h; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				41994AA11A8CDE7700DE4AE6 /* HMScene.swift */,
+				4168B2791A93083A005B3C8A /* HMSceneAnimations.swift */,
 				41994AA21A8CDE7700DE4AE6 /* HMSceneDelegate.swift */,
 				41994AA31A8CDE7700DE4AE6 /* HMViewController.swift */,
 				41994A481A8CD60000DE4AE6 /* HoneyMoon.h */,
@@ -248,6 +251,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4168B27A1A93083A005B3C8A /* HMSceneAnimations.swift in Sources */,
 				41994A991A8CDB4300DE4AE6 /* easing.c in Sources */,
 				41994AA41A8CDE7700DE4AE6 /* HMScene.swift in Sources */,
 				41994AA51A8CDE7700DE4AE6 /* HMSceneDelegate.swift in Sources */,

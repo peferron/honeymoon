@@ -1,29 +1,8 @@
 import SpriteKit
 
 public class HMScene: SKScene {
+    public let animations: HMSceneAnimations = HMSceneAnimations()
     public var sceneDelegate: HMSceneDelegate?
-
-    var filename: String {
-        return self.dynamicType.classFilename
-    }
-
-    public var step: Int = -1 {
-        didSet {
-            println("\(filename): didSet step: \(oldValue) -> \(step)")
-            if !didSetStep(oldValue) {
-                println("\(filename): cannot set step: \(oldValue) -> \(step)")
-                step = oldValue
-            }
-        }
-    }
-
-    public func didSetStep(oldValue: Int) -> Bool {
-        return false
-    }
-
-    func nextStep() {
-        step++
-    }
 
     public func node(name: String) -> SKNode {
         return childNodeWithName(name)!
@@ -33,13 +12,9 @@ public class HMScene: SKScene {
         backgroundColor = UIColor.blackColor()
         step = 0
 
-        let label = SKLabelNode(text: filename)
-        label.fontSize = 64
-        label.fontColor = SKColor.greenColor()
-        label.horizontalAlignmentMode = .Left
-        label.position = CGPoint(x: 15, y: 15)
-        label.zPosition = 100
-        addChild(label)
+        if HMScene.debugShowFilename {
+            addFilenameLabel()
+        }
     }
 
     override public func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
@@ -54,62 +29,15 @@ public class HMScene: SKScene {
         println("didReceiveKey: \(key)")
     }
 
-    // MARK: - Animations
+    // MARK: - Filename
 
-    public func zoomIn(node: SKNode, scale: CGFloat, x: CGFloat, y: CGFloat, time: NSTimeInterval, completion: () -> Void) {
-        zoom(node, scale: scale, x: x, y: y, easeFunction: .Expo, easeMode: .EaseIn, time: time, completion: completion)
+    class var classFilename: String {
+        return NSStringFromClass(self).componentsSeparatedByString(".")[1]
     }
 
-    public func zoomOut(node: SKNode, scale: CGFloat, x: CGFloat, y: CGFloat, time: NSTimeInterval, completion: () -> Void) {
-        zoom(node, scale: scale, x: x, y: y, easeFunction: .Expo, easeMode: .EaseOut, time: time, completion: completion)
+    var filename: String {
+        return self.dynamicType.classFilename
     }
-
-    func zoom(node: SKNode, scale: CGFloat, x: CGFloat, y: CGFloat, easeFunction: CurveType, easeMode: EasingMode, time: NSTimeInterval, completion: () -> Void) {
-        let scaledX = -x * scale
-        let scaledY = -y * scale
-
-        if time <= 0 {
-            node.xScale = scale
-            node.yScale = scale
-            node.position = CGPoint(x: scaledX, y: scaledY)
-            completion()
-            return
-        }
-
-        let scaleAction = SKEase.ScaleToWithNode(node, easeFunction: easeFunction, mode: easeMode, time: time, toValue: scale)
-        let moveAction = SKEase.MoveToWithNode(node, easeFunction: easeFunction, mode: easeMode, time: time, toVector: CGVector(dx: scaledX, dy: scaledY))
-        node.runAction(SKAction.group([scaleAction, moveAction]), completion: completion)
-    }
-
-    public func adjustZoom(node: SKNode, key: String) {
-        switch key {
-        case "w":
-            adjustZoom(node, dScale: 0, dX: 0, dY: 1)
-        case "a":
-            adjustZoom(node, dScale: 0, dX: -1, dY: 0)
-        case "s":
-            adjustZoom(node, dScale: 0, dX: 0, dY: -1)
-        case "d":
-            adjustZoom(node, dScale: 0, dX: 1, dY: 0)
-        case "r":
-            adjustZoom(node, dScale: 1, dX: 0, dY: 0)
-        case "f":
-            adjustZoom(node, dScale: -1, dX: 0, dY: 0)
-        default:
-            break
-        }
-    }
-
-    public func adjustZoom(node: SKNode, dScale: CGFloat, dX: CGFloat, dY: CGFloat) {
-        assert(node.xScale == node.yScale, "node should have identical xScale and yScale")
-        let scale = node.xScale + dScale
-        let x = -node.position.x / node.xScale + dX
-        let y = -node.position.y / node.yScale + dY
-        println("adjustZoom, scale: \(scale), x: \(x), y: \(y)")
-        zoom(node, scale: scale, x: x, y: y, easeFunction: .Expo, easeMode: .EaseIn, time: 0, completion: {})
-    }
-
-    // MARK: - Class funcs and vars
 
     class func unarchiveFromFile() -> HMScene {
         let path = NSBundle.mainBundle().pathForResource(classFilename, ofType: "sks")!
@@ -121,7 +49,41 @@ public class HMScene: SKScene {
         return scene
     }
 
-    class var classFilename: String {
-        return NSStringFromClass(self).componentsSeparatedByString(".")[1]
+    // Using a getter and setter here because otherwise the Swift compiler crashes with a segmentation fault.
+    static var internalDebugShowFilename = false
+    public static var debugShowFilename: Bool {
+        get {
+            return internalDebugShowFilename
+        }
+        set {
+            internalDebugShowFilename = newValue
+        }
+    }
+
+    func addFilenameLabel() {
+        let label = SKLabelNode(text: filename)
+        label.fontSize = 64
+        label.fontColor = SKColor.greenColor()
+        label.horizontalAlignmentMode = .Left
+        label.verticalAlignmentMode = .Top
+        label.position = CGPoint(x: 15, y: frame.height - 15)
+        label.zPosition = 100
+        addChild(label)
+    }
+
+    // MARK: - Step
+
+    public var step: Int = -1 {
+        didSet {
+            println("\(filename): didSet step: \(oldValue) -> \(step)")
+            if !didSetStep(oldValue) {
+                println("\(filename): cannot set step: \(oldValue) -> \(step)")
+                step = oldValue
+            }
+        }
+    }
+
+    public func didSetStep(oldValue: Int) -> Bool {
+        return false
     }
 }

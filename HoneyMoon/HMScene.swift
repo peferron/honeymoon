@@ -2,6 +2,7 @@ import SpriteKit
 
 public class HMScene: SKScene {
     public let animations: HMSceneAnimations = HMSceneAnimations()
+    public let text: HMSceneText = HMSceneText()
     public var sceneDelegate: HMSceneDelegate?
 
     public func node(name: String) -> SKNode {
@@ -18,11 +19,11 @@ public class HMScene: SKScene {
     }
 
     override public func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-        for touch: AnyObject in touches {
-            let location = touch.locationInNode(self)
-            println("Touch, x: \(location.x), y: \(location.y)")
-        }
-        step++
+//        for touch: AnyObject in touches {
+//            let location = touch.locationInNode(self)
+//            println("Touch, x: \(location.x), y: \(location.y)")
+//        }
+        text.touchesBegan()
     }
 
     public func didReceiveKey(key: String) {

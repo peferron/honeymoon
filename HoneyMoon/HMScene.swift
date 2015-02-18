@@ -65,9 +65,9 @@ public class HMScene: SKScene {
         let label = SKLabelNode(text: filename)
         label.fontSize = 64
         label.fontColor = SKColor.greenColor()
-        label.horizontalAlignmentMode = .Left
+        label.horizontalAlignmentMode = .Right
         label.verticalAlignmentMode = .Top
-        label.position = CGPoint(x: 15, y: frame.height - 15)
+        label.position = CGPoint(x: frame.width - 15, y: frame.height - 15)
         label.zPosition = 100
         addChild(label)
     }

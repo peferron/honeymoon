@@ -60,21 +60,6 @@ public class HMText {
         }
     }
 
-    // MARK: - Touches
-
-    var onTouch: (() -> Void)?
-
-    func touchesBegan() {
-        onTouch?()
-        onTouch = nil
-    }
-
-    public func waitForTouch() -> HMText {
-        return enqueueAsync { completion in
-            self.onTouch = completion
-        }
-    }
-
     // MARK: - Display
 
     public var container: SKNode!

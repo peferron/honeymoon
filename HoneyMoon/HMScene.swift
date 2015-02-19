@@ -24,12 +24,18 @@ public class HMScene: SKScene {
 
     // MARK: - User input
 
+    public var onTouch: (() -> Void)?
+
+    public func waitForTouch(completion: () -> Void) {
+        self.onTouch = completion
+    }
+
     override public func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
 //        for touch: AnyObject in touches {
 //            let location = touch.locationInNode(self)
 //            println("Touch, x: \(location.x), y: \(location.y)")
 //        }
-        text.touchesBegan()
+        onTouch?()
     }
 
     public func didReceiveKey(key: String) {

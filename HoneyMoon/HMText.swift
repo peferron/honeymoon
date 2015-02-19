@@ -24,9 +24,19 @@ public class HMText {
 
     func dequeue() {
         dispatch_async(dispatch_get_main_queue()) {
-            if self.queue.count > 0 {
-                let firstAction = self.queue.removeAtIndex(0)
-                firstAction(completion: self.dequeue)
+            if self.queue.isEmpty {
+                return
+            }
+            let firstAction = self.queue.removeAtIndex(0)
+            var completed = false
+            firstAction {
+                dispatch_async(dispatch_get_main_queue()) {
+                    if completed {
+                        return
+                    }
+                    completed = true
+                    self.dequeue()
+                }
             }
         }
     }

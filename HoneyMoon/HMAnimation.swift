@@ -1,17 +1,17 @@
 import SpriteKit
 
-public class HMSceneAnimations {
+public class HMAnimation {
     // MARK: - Zoom
 
-    public func zoomIn(node: SKNode, scale: CGFloat, x: CGFloat, y: CGFloat, time: NSTimeInterval, completion: () -> Void) {
-        zoom(node, scale: scale, x: x, y: y, easeFunction: .Expo, easeMode: .EaseIn, time: time, completion: completion)
+    public static func zoomIn(node: SKNode, scale: CGFloat, x: CGFloat, y: CGFloat, time: NSTimeInterval, completion: () -> Void) {
+        HMAnimation.zoom(node, scale: scale, x: x, y: y, easeFunction: .Expo, easeMode: .EaseIn, time: time, completion: completion)
     }
 
-    public func zoomOut(node: SKNode, scale: CGFloat, x: CGFloat, y: CGFloat, time: NSTimeInterval, completion: () -> Void) {
-        zoom(node, scale: scale, x: x, y: y, easeFunction: .Expo, easeMode: .EaseOut, time: time, completion: completion)
+    public static func zoomOut(node: SKNode, scale: CGFloat, x: CGFloat, y: CGFloat, time: NSTimeInterval, completion: () -> Void) {
+        HMAnimation.zoom(node, scale: scale, x: x, y: y, easeFunction: .Expo, easeMode: .EaseOut, time: time, completion: completion)
     }
 
-    func zoom(node: SKNode, scale: CGFloat, x: CGFloat, y: CGFloat, easeFunction: CurveType, easeMode: EasingMode, time: NSTimeInterval, completion: () -> Void) {
+    static func zoom(node: SKNode, scale: CGFloat, x: CGFloat, y: CGFloat, easeFunction: CurveType, easeMode: EasingMode, time: NSTimeInterval, completion: () -> Void) {
         let scaledX = -x * scale
         let scaledY = -y * scale
 
@@ -30,7 +30,7 @@ public class HMSceneAnimations {
 
     // MARK: - Debug zoom
 
-    public func adjustZoom(node: SKNode, key: String) {
+    public static func adjustZoom(node: SKNode, key: String) {
         switch key {
         case "w":
             adjustZoom(node, dScale: 0, dX: 0, dY: 1)
@@ -49,7 +49,7 @@ public class HMSceneAnimations {
         }
     }
 
-    public func adjustZoom(node: SKNode, dScale: CGFloat, dX: CGFloat, dY: CGFloat) {
+    public static func adjustZoom(node: SKNode, dScale: CGFloat, dX: CGFloat, dY: CGFloat) {
         assert(node.xScale == node.yScale, "node should have identical xScale and yScale")
         let scale = node.xScale + dScale
         let x = -node.position.x / node.xScale + dX

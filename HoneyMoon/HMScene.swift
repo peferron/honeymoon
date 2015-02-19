@@ -1,7 +1,6 @@
 import SpriteKit
 
 public class HMScene: SKScene {
-    public let animations: HMSceneAnimations = HMSceneAnimations()
     public let text: HMSceneText = HMSceneText()
     public var sceneDelegate: HMSceneDelegate?
 

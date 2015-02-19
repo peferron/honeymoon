@@ -21,7 +21,10 @@ public class HMScene: SKScene {
     public var onTouch: (() -> Void)?
 
     public func waitForTouch(completion: () -> Void) {
-        self.onTouch = completion
+        onTouch = {
+            self.onTouch = nil
+            completion()
+        }
     }
 
     override public func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {

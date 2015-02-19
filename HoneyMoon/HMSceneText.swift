@@ -1,29 +1,9 @@
 import SpriteKit
 
 public class HMSceneText {
-    // MARK: - Label creation
-
-    var createLabel: (() -> SKLabelNode) = HMSceneText.defaultCreateLabel
-
-    public class func defaultCreateLabel() -> SKLabelNode {
-        let label = SKLabelNode()
-        label.fontSize = 32
-        label.color = SKColor.greenColor()
-        return label
-    }
-
-    // MARK: - Touches
-
-    var onTouch: (() -> Void)?
-
-    func touchesBegan() {
-        onTouch?()
-        onTouch = nil
-    }
-
     // MARK: - Queuing
 
-    var queue: [(completion: () -> Void) -> Void] = []
+    var queue: [HMAsync.Action] = []
 
     public func enqueue(action: () -> Void) -> HMSceneText {
         return enqueueAsync { completion in
@@ -32,7 +12,7 @@ public class HMSceneText {
         }
     }
 
-    public func enqueueAsync(action: (completion: () -> Void) -> Void) -> HMSceneText {
+    public func enqueueAsync(action: HMAsync.Action) -> HMSceneText {
         dispatch_async(dispatch_get_main_queue()) {
             self.queue.append(action)
             if self.queue.count == 1 {
@@ -45,38 +25,59 @@ public class HMSceneText {
     func dequeue() {
         dispatch_async(dispatch_get_main_queue()) {
             if self.queue.count > 0 {
-                let first = self.queue.removeAtIndex(0)
-                first(completion: self.dequeue)
+                let firstAction = self.queue.removeAtIndex(0)
+                firstAction(completion: self.dequeue)
             }
         }
     }
 
-    // MARK: - Convenience functions
+    // MARK: - Label creation
 
-    public func clear() -> HMSceneText {
-        return enqueue {
-            println("clear")
-        }
+    var createLabel: (() -> SKLabelNode) = HMSceneText.defaultCreateLabel
+
+    class func defaultCreateLabel() -> SKLabelNode {
+        let label = SKLabelNode()
+        label.fontSize = 32
+        label.color = SKColor.whiteColor()
+        label.position = CGPoint(x: 15, y: 15)
+        label.horizontalAlignmentMode = .Left
+        return label
     }
 
     public func createLabelWith(createLabel: () -> SKLabelNode) -> HMSceneText {
         return enqueue {
-            println("createLabelWith")
             self.createLabel = createLabel
         }
     }
 
-    public func append(paragraph: String) -> HMSceneText {
-        return enqueueAsync { completion in
-            println("append: \(paragraph)")
-            completion()
-        }
+    // MARK: - Touches
+
+    var onTouch: (() -> Void)?
+
+    func touchesBegan() {
+        onTouch?()
+        onTouch = nil
     }
 
     public func waitForTouch() -> HMSceneText {
         return enqueueAsync { completion in
-            println("waitForTouch")
             self.onTouch = completion
+        }
+    }
+
+    // MARK: - Display
+
+    public var container: SKNode!
+
+    public func clear() -> HMSceneText {
+        return enqueue(container.removeAllChildren)
+    }
+
+    public func append(paragraph: String) -> HMSceneText {
+        return enqueue {
+            let label = self.createLabel()
+            label.text = paragraph
+            self.container.addChild(label)
         }
     }
 }

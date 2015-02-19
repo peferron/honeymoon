@@ -9,6 +9,11 @@ public class HMScene: SKScene {
         return childNodeWithName(name)!
     }
 
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        text.container = self
+    }
+
     override public func didMoveToView(view: SKView) {
         backgroundColor = UIColor.blackColor()
         step = 0
@@ -17,6 +22,8 @@ public class HMScene: SKScene {
             addFilenameLabel()
         }
     }
+
+    // MARK: - User input
 
     override public func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
 //        for touch: AnyObject in touches {

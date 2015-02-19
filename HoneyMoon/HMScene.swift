@@ -1,16 +1,10 @@
 import SpriteKit
 
 public class HMScene: SKScene {
-    public let text: HMText = HMText()
     public var sceneDelegate: HMSceneDelegate?
 
     public func node(name: String) -> SKNode {
         return childNodeWithName(name)!
-    }
-
-    public required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        text.container = self
     }
 
     override public func didMoveToView(view: SKView) {

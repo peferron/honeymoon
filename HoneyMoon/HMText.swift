@@ -62,7 +62,11 @@ public class HMText {
 
     // MARK: - Display
 
-    public var container: SKNode!
+    let container: SKNode
+
+    public init(container: SKNode) {
+        self.container = container
+    }
 
     public func clear() -> HMText {
         return enqueue(container.removeAllChildren)

@@ -75,7 +75,7 @@ public class HMText {
         return enqueue(container.removeAllChildren)
     }
 
-    public func append(paragraph: String) -> HMText {
+    public func write(paragraph: String) -> HMText {
         return enqueue {
             let label = self.createLabel(self.container)
             label.text = paragraph

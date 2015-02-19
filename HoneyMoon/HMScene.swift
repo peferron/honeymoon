@@ -1,7 +1,7 @@
 import SpriteKit
 
 public class HMScene: SKScene {
-    public let text: HMSceneText = HMSceneText()
+    public let text: HMText = HMText()
     public var sceneDelegate: HMSceneDelegate?
 
     public func node(name: String) -> SKNode {

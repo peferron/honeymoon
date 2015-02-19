@@ -1,18 +1,18 @@
 import SpriteKit
 
-public class HMSceneText {
+public class HMText {
     // MARK: - Queuing
 
     var queue: [HMAsync.Action] = []
 
-    public func enqueue(action: () -> Void) -> HMSceneText {
+    public func enqueue(action: () -> Void) -> HMText {
         return enqueueAsync { completion in
             action()
             completion()
         }
     }
 
-    public func enqueueAsync(action: HMAsync.Action) -> HMSceneText {
+    public func enqueueAsync(action: HMAsync.Action) -> HMText {
         dispatch_async(dispatch_get_main_queue()) {
             self.queue.append(action)
             if self.queue.count == 1 {
@@ -33,7 +33,7 @@ public class HMSceneText {
 
     // MARK: - Label creation
 
-    var createLabel: (() -> SKLabelNode) = HMSceneText.defaultCreateLabel
+    var createLabel: (() -> SKLabelNode) = HMText.defaultCreateLabel
 
     class func defaultCreateLabel() -> SKLabelNode {
         let label = SKLabelNode()
@@ -44,7 +44,7 @@ public class HMSceneText {
         return label
     }
 
-    public func createLabelWith(createLabel: () -> SKLabelNode) -> HMSceneText {
+    public func createLabelWith(createLabel: () -> SKLabelNode) -> HMText {
         return enqueue {
             self.createLabel = createLabel
         }
@@ -59,7 +59,7 @@ public class HMSceneText {
         onTouch = nil
     }
 
-    public func waitForTouch() -> HMSceneText {
+    public func waitForTouch() -> HMText {
         return enqueueAsync { completion in
             self.onTouch = completion
         }
@@ -69,11 +69,11 @@ public class HMSceneText {
 
     public var container: SKNode!
 
-    public func clear() -> HMSceneText {
+    public func clear() -> HMText {
         return enqueue(container.removeAllChildren)
     }
 
-    public func append(paragraph: String) -> HMSceneText {
+    public func append(paragraph: String) -> HMText {
         return enqueue {
             let label = self.createLabel()
             label.text = paragraph

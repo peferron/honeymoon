@@ -43,18 +43,21 @@ public class HMText {
 
     // MARK: - Label creation
 
-    var createLabel: (() -> SKLabelNode) = HMText.defaultCreateLabel
+    public typealias HMLabelCreator = (container: SKNode) -> SKLabelNode
 
-    class func defaultCreateLabel() -> SKLabelNode {
+    var createLabel = HMText.defaultCreateLabel
+
+    class func defaultCreateLabel(container: SKNode) -> SKLabelNode {
         let label = SKLabelNode()
         label.fontSize = 32
         label.color = SKColor.whiteColor()
-        label.position = CGPoint(x: 15, y: 15)
+        label.position = CGPoint(x: 15, y: container.frame.height - 15)
         label.horizontalAlignmentMode = .Left
+        label.verticalAlignmentMode = .Top
         return label
     }
 
-    public func createLabelWith(createLabel: () -> SKLabelNode) -> HMText {
+    public func createLabelWith(createLabel: HMLabelCreator) -> HMText {
         return enqueue {
             self.createLabel = createLabel
         }
@@ -74,7 +77,7 @@ public class HMText {
 
     public func append(paragraph: String) -> HMText {
         return enqueue {
-            let label = self.createLabel()
+            let label = self.createLabel(self.container)
             label.text = paragraph
             self.container.addChild(label)
         }

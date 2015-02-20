@@ -50,7 +50,7 @@ public class HMText {
     class func defaultCreateLabel(container: SKNode) -> SKLabelNode {
         let label = SKLabelNode()
         label.fontSize = 32
-        label.color = SKColor.whiteColor()
+        label.fontColor = UIColor.blackColor()
         label.position = CGPoint(x: 15, y: container.frame.height - 15)
         label.horizontalAlignmentMode = .Left
         label.verticalAlignmentMode = .Top
@@ -80,6 +80,18 @@ public class HMText {
             let label = self.createLabel(self.container)
             label.text = paragraph
             self.container.addChild(label)
+        }
+    }
+
+    public func ask(choices: [String], completion: Int -> Void) -> HMText {
+        return enqueueAsync { enqueueCompletion in
+            for choice in choices {
+                let label = self.createLabel(self.container)
+                label.fontColor = UIColor.redColor()
+                label.text = choice
+                self.container.addChild(label)
+                enqueueCompletion()
+            }
         }
     }
 }

@@ -14,7 +14,7 @@ public class HMAsync {
             actions[i] {
                 dispatch_async(queue) {
                     completed[i] = true
-                    if (HMUtils.every(completed) { $0 }) {
+                    if (completed.every { $0 }) {
                         completion()
                     }
                 }

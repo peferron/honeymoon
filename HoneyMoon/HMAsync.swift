@@ -7,10 +7,12 @@ public class HMAsync {
             return
         }
 
+        let queue = dispatch_queue_create("HMAsync.parallel", nil)
         var completed = [Bool](count: actions.count, repeatedValue: false)
+
         for i in 0..<actions.count {
             actions[i] {
-                dispatch_async(dispatch_get_main_queue()) {
+                dispatch_async(queue) {
                     completed[i] = true
                     if (self.every(completed) { $0 }) {
                         completion()

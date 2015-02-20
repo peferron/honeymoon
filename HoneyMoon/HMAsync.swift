@@ -12,7 +12,7 @@ public class HMAsync {
             actions[i] {
                 dispatch_async(dispatch_get_main_queue()) {
                     completed[i] = true
-                    if self.every(completed, fn: { $0 }) {
+                    if (self.every(completed) { $0 }) {
                         completion()
                     }
                 }
@@ -20,7 +20,7 @@ public class HMAsync {
         }
     }
 
-    public static func every<T>(array: Array<T>, fn: (T) -> Bool) -> Bool {
+    static func every<T>(array: Array<T>, fn: (T) -> Bool) -> Bool {
         for item in array {
             if !fn(item) {
                 return false

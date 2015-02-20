@@ -15,14 +15,11 @@ public class HMText {
     public func enqueueAsync(action: HMAsync.Action) -> HMText {
         dispatch_async(dispatch_get_main_queue()) {
             self.queue.append(action)
-            if self.queue.count == 1 {
-                self.dequeue()
-            }
         }
         return self
     }
 
-    func dequeue() {
+    public func start() {
         dispatch_async(dispatch_get_main_queue()) {
             if self.queue.isEmpty {
                 return
@@ -35,7 +32,7 @@ public class HMText {
                         return
                     }
                     completed = true
-                    self.dequeue()
+                    self.start()
                 }
             }
         }

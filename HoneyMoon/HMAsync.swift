@@ -23,6 +23,7 @@ public class HMAsync {
     }
 
     public static func sync(action: Action) {
+        // TODO: Once I have internet back, check if there's a better way than this hack to wait for an async function.
         var completed = false
         action { completed = true }
         while !completed {}

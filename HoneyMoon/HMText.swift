@@ -66,11 +66,11 @@ public class HMText {
         self.container = container
     }
 
-    public func clear() -> HMText {
+    public func enqueueClear() -> HMText {
         return enqueue(container.removeAllChildren)
     }
 
-    public func write(paragraph: String) -> HMText {
+    public func enqueueWrite(paragraph: String) -> HMText {
         return enqueue {
             let label = self.createLabel(self.container)
             label.text = paragraph
@@ -78,15 +78,16 @@ public class HMText {
         }
     }
 
-    public func ask(choices: [String], completion: Int -> Void) -> HMText {
-        return enqueueAsync { enqueueCompletion in
+    public func enqueueAsk(choices: [String], userChoice: Int -> Void) -> HMText {
+        return enqueueAsync { completion in
             for choice in choices {
                 let label = self.createLabel(self.container)
                 label.fontColor = UIColor.redColor()
                 label.text = choice
                 self.container.addChild(label)
-                enqueueCompletion()
             }
+            userChoice(1)
+            completion()
         }
     }
 }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		41190CD01A955C5C00CE8701 /* HMAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41190CCF1A955C5C00CE8701 /* HMAsync.swift */; };
 		41190CD91A972D8500CE8701 /* HMUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41190CD81A972D8500CE8701 /* HMUtils.swift */; };
+		41190CDE1A9762D500CE8701 /* HMStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41190CDD1A9762D500CE8701 /* HMStep.swift */; };
 		4168B27A1A93083A005B3C8A /* HMAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4168B2791A93083A005B3C8A /* HMAnimation.swift */; };
 		4168B27E1A930A5B005B3C8A /* HMText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4168B27D1A930A5B005B3C8A /* HMText.swift */; };
 		41994A491A8CD60000DE4AE6 /* HoneyMoon.h in Headers */ = {isa = PBXBuildFile; fileRef = 41994A481A8CD60000DE4AE6 /* HoneyMoon.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -38,6 +39,7 @@
 /* Begin PBXFileReference section */
 		41190CCF1A955C5C00CE8701 /* HMAsync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMAsync.swift; sourceTree = "<group>"; };
 		41190CD81A972D8500CE8701 /* HMUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMUtils.swift; sourceTree = "<group>"; };
+		41190CDD1A9762D500CE8701 /* HMStep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMStep.swift; sourceTree = "<group>"; };
 		4168B2791A93083A005B3C8A /* HMAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMAnimation.swift; sourceTree = "<group>"; };
 		4168B27D1A930A5B005B3C8A /* HMText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMText.swift; sourceTree = "<group>"; };
 		41994A431A8CD60000DE4AE6 /* HoneyMoon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HoneyMoon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -98,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				41994AA11A8CDE7700DE4AE6 /* HMScene.swift */,
+				41190CDD1A9762D500CE8701 /* HMStep.swift */,
 				41994AA21A8CDE7700DE4AE6 /* HMSceneDelegate.swift */,
 				41994AA31A8CDE7700DE4AE6 /* HMViewController.swift */,
 				4168B2791A93083A005B3C8A /* HMAnimation.swift */,
@@ -262,6 +265,7 @@
 			files = (
 				4168B27A1A93083A005B3C8A /* HMAnimation.swift in Sources */,
 				41994A991A8CDB4300DE4AE6 /* easing.c in Sources */,
+				41190CDE1A9762D500CE8701 /* HMStep.swift in Sources */,
 				4168B27E1A930A5B005B3C8A /* HMText.swift in Sources */,
 				41190CD91A972D8500CE8701 /* HMUtils.swift in Sources */,
 				41190CD01A955C5C00CE8701 /* HMAsync.swift in Sources */,

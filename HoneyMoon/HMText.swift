@@ -42,7 +42,7 @@ public class HMText {
 
     var createLabel = HMText.defaultCreateLabel
 
-    class func defaultCreateLabel(container: SKNode) -> SKLabelNode {
+    public class func defaultCreateLabel(container: SKNode) -> SKLabelNode {
         let label = SKLabelNode()
         label.fontSize = 32
         label.fontColor = UIColor.blackColor()

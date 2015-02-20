@@ -9,7 +9,7 @@ public class HMScene: SKScene {
 
     override public func didMoveToView(view: SKView) {
         backgroundColor = UIColor.blackColor()
-        step = 0
+        step = start
 
         if HMScene.debugShowFilename {
             addFilenameLabel()
@@ -83,7 +83,10 @@ public class HMScene: SKScene {
 
     // MARK: - Step
 
-    public var step: Int = -1 {
+    public let none = "none"
+    public let start = "start"
+
+    public var step: String = "none" {
         didSet {
             println("\(filename): didSet step: \(oldValue) -> \(step)")
             if !didSetStep(oldValue) {
@@ -93,7 +96,7 @@ public class HMScene: SKScene {
         }
     }
 
-    public func didSetStep(oldValue: Int) -> Bool {
+    public func didSetStep(oldValue: String) -> Bool {
         return false
     }
 }

@@ -3,39 +3,16 @@ import SpriteKit
 public class HMText {
     // MARK: - Queuing
 
-    var queue: [HMAsync.Action] = []
+    let queue = dispatch_queue_create("HMText", nil)
 
     public func enqueue(action: () -> Void) -> HMText {
-        return enqueueAsync { completion in
-            action()
-            completion()
-        }
-    }
-
-    public func enqueueAsync(action: HMAsync.Action) -> HMText {
-        dispatch_async(dispatch_get_main_queue()) {
-            self.queue.append(action)
-        }
+        dispatch_async(queue, action)
         return self
     }
 
-    public func start() {
-        dispatch_async(dispatch_get_main_queue()) {
-            if self.queue.isEmpty {
-                return
-            }
-            let firstAction = self.queue.removeAtIndex(0)
-            var completed = false
-            firstAction {
-                dispatch_async(dispatch_get_main_queue()) {
-                    if completed {
-                        return
-                    }
-                    completed = true
-                    self.start()
-                }
-            }
-        }
+    public func enqueueAsync(action: HMAsync.Action) -> HMText {
+        dispatch_async(queue) { HMAsync.sync(action) }
+        return self
     }
 
     // MARK: - Label creation
@@ -53,9 +30,7 @@ public class HMText {
     }
 
     public func enqueueCreateLabelWith(createLabel: (container: SKNode) -> SKLabelNode) -> HMText {
-        return enqueue {
-            self.createLabel = createLabel
-        }
+        return enqueue { self.createLabel = createLabel }
     }
 
     // MARK: - Display

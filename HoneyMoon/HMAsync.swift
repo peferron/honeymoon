@@ -28,4 +28,10 @@ public class HMAsync {
         }
         return true
     }
+
+    public static func sync(action: Action) {
+        var completed = false
+        action { completed = true }
+        while !completed {}
+    }
 }

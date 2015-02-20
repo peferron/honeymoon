@@ -14,21 +14,12 @@ public class HMAsync {
             actions[i] {
                 dispatch_async(queue) {
                     completed[i] = true
-                    if (self.every(completed) { $0 }) {
+                    if (HMUtils.every(completed) { $0 }) {
                         completion()
                     }
                 }
             }
         }
-    }
-
-    static func every<T>(array: Array<T>, fn: (T) -> Bool) -> Bool {
-        for item in array {
-            if !fn(item) {
-                return false
-            }
-        }
-        return true
     }
 
     public static func sync(action: Action) {

@@ -40,8 +40,6 @@ public class HMText {
 
     // MARK: - Label creation
 
-    public typealias HMLabelCreator = (container: SKNode) -> SKLabelNode
-
     var createLabel = HMText.defaultCreateLabel
 
     class func defaultCreateLabel(container: SKNode) -> SKLabelNode {
@@ -54,7 +52,7 @@ public class HMText {
         return label
     }
 
-    public func createLabelWith(createLabel: HMLabelCreator) -> HMText {
+    public func enqueueCreateLabelWith(createLabel: (container: SKNode) -> SKLabelNode) -> HMText {
         return enqueue {
             self.createLabel = createLabel
         }

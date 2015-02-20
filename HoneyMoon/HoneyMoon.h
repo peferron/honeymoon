@@ -11,5 +11,4 @@ FOUNDATION_EXPORT const unsigned char HoneyMoonVersionString[];
 #import "EasingDeclarations.h"
 #import "SKEase.h"
 
-// Optional but removes a compiler warning.
-#import "HoneyMoon-Swift.h"
+//#import "HoneyMoon-Swift.h"

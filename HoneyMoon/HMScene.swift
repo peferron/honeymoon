@@ -3,10 +3,6 @@ import SpriteKit
 public class HMScene: SKScene {
     public var sceneDelegate: HMSceneDelegate?
 
-    public func node(name: String) -> SKNode {
-        return childNodeWithName(name)!
-    }
-
     override public func didMoveToView(view: SKView) {
         backgroundColor = UIColor.blackColor()
         step = HMStep.start

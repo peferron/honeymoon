@@ -55,8 +55,8 @@ public class HMScene: SKScene {
         return scene
     }
 
-    // Using a getter and setter here because otherwise the Swift compiler crashes with a segmentation fault.
-    // TODO: Once I have internet back, look this up.
+    // Using a getter and setter here because otherwise the Swift compiler crashes with a segmentation fault (Xcode 6.3
+    // beta).
     static var internalDebugShowFilename = false
     public static var debugShowFilename: Bool {
         get {
@@ -84,11 +84,9 @@ public class HMScene: SKScene {
         didSet {
             println("\(filename): didSet step: \(oldValue) -> \(step)")
             if !didSetStep(oldValue) {
-                // Dirty trick to prevent a compiler warning with assertionFailure.
-                // TODO: Once I have internet back, check if there's a better way to do that.
-                // Also, the Swift iBook says that string interpolations cannot be used in assertions, but it's working
-                // just fine in practice. My Swift iBook might be outdated, check if this has changed between release
-                // and Xcode 6.3 beta.
+                // Use assert(false, msg) instead of assertionFailure(msg) to prevent the compiler from issuing a
+                // warning "will never be executed" for the following code. Assertions are supposed to be no-ops in
+                // optimized builds, so this warning doesn't seem right (Xcode 6.3 beta).
                 assert(false, "\(filename): cannot set step: \(oldValue) -> \(step)")
                 step = oldValue
             }

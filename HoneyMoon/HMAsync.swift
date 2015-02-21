@@ -1,6 +1,10 @@
 public class HMAsync {
     public typealias Action = (completion: () -> Void) -> Void
 
+    // This function looks like a good candidate for a GCD group. However, if we want to guard against actions calling
+    // their completion callback multiple times, we need a boolean flag. To access to this boolean flag safely from
+    // multiple threads, we need to wrap it in a dispatch_async. At this point we might as well get rid of the GCD group
+    // and simply use a counter instead.
     public static func parallel(actions: [Action], completion: () -> Void) {
         if actions.isEmpty {
             completion()
@@ -8,13 +12,19 @@ public class HMAsync {
         }
 
         let queue = dispatch_queue_create("HMAsync.parallel", nil)
-        var completed = [Bool](count: actions.count, repeatedValue: false)
-
-        for i in 0..<actions.count {
-            actions[i] {
+        var pending = actions.count
+        
+        for action in actions {
+            var done = false
+            action {
                 dispatch_async(queue) {
-                    completed[i] = true
-                    if (completed.every { $0 }) {
+                    if done {
+                        // This action has already called its completion callback at least once before.
+                        return
+                    } 
+                    done = true
+                    pending--
+                    if pending == 0 {
                         completion()
                     }
                 }

@@ -23,9 +23,9 @@ public class HMAsync {
     }
 
     public static func sync(action: Action) {
-        // TODO: Once I have internet back, check if there's a better way than this hack to wait for an async function.
-        var completed = false
-        action { completed = true }
-        while !completed {}
+        let group = dispatch_group_create()
+        dispatch_group_enter(group)
+        action { dispatch_group_leave(group) }
+        dispatch_group_wait(group, DISPATCH_TIME_FOREVER)
     }
 }

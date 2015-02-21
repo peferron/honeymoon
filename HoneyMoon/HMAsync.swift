@@ -23,9 +23,8 @@ public class HMAsync {
     }
 
     public static func sync(action: Action) {
-        let group = dispatch_group_create()
-        dispatch_group_enter(group)
-        action { dispatch_group_leave(group) }
-        dispatch_group_wait(group, DISPATCH_TIME_FOREVER)
+        let semaphore = dispatch_semaphore_create(0)
+        action { dispatch_semaphore_signal(semaphore) }
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
     }
 }

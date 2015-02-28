@@ -4,6 +4,10 @@ public class HMViewController: UIViewController, HMSceneDelegate {
     var incoming: SKView?
     var outgoing: SKView?
 
+    public func createSKView() -> SKView {
+        return SKView(frame: view.frame)
+    }
+
     public func presentScene(sceneClass: HMScene.Type) {
         outgoing = incoming
 
@@ -11,7 +15,7 @@ public class HMViewController: UIViewController, HMSceneDelegate {
         println("GKViewController: presentScene: \(incomingScene.filename)")
         incomingScene.scaleMode = .AspectFit
         incomingScene.sceneDelegate = self
-        incoming = SKView(frame: view.frame)
+        incoming = createSKView()
         incoming?.ignoresSiblingOrder = true
 
         // Default behavior is to remove the outgoing view, but in more sophisticated transitions we might want to keep

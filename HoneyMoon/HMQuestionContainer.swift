@@ -29,7 +29,7 @@ public class HMQuestionContainer: UIView {
 
                 button.sizeToFit()
                 button.frame = CGRect(x: 0, y: 0, width: button.frame.width + 50, height: button.frame.height + 20)
-                button.center = CGPoint(x: self.center.x, y: self.frame.height * CGFloat(i + 1) / CGFloat(choices.count + 1))
+                button.center = CGPoint(x: self.center.x, y: self.bounds.height * CGFloat(i + 1) / CGFloat(choices.count + 1))
                 
                 self.addSubview(button)
             }

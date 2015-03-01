@@ -5,7 +5,7 @@ public class HMViewController: UIViewController, HMSceneDelegate {
     var outgoing: SKView?
 
     public func createSKView() -> SKView {
-        return SKView(frame: view.frame)
+        return SKView(frame: view.bounds)
     }
 
     public func presentScene(sceneClass: HMScene.Type) {

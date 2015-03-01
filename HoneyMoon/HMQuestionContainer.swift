@@ -11,6 +11,12 @@ public class HMQuestionContainer: UIVisualEffectView {
         self.hidden = true
     }
 
+    public func ask(choices: [(text: String, action: () -> ())]) {
+        ask(choices.map { $0.text }) {
+            choices[$0].action()
+        }
+    }
+
     public func ask(choices: [String], completion: Int -> ()) {
         dispatch_async(dispatch_get_main_queue()) {
             let vibrancyEffect = UIVibrancyEffect(forBlurEffect: self.effect as! UIBlurEffect)

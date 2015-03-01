@@ -1,45 +1,41 @@
 import UIKit
 
-public class HMQuestionContainer: UIView {
-    override init() {
-        super.init()
-    }
-
+public class HMQuestionContainer: UIVisualEffectView {
     public required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
+    public init(frame: CGRect) {
+        super.init(effect: UIBlurEffect(style: .Dark))
+        self.frame = frame
+        self.hidden = true
     }
 
     public func ask(choices: [String], completion: Int -> ()) {
         dispatch_async(dispatch_get_main_queue()) {
+            let vibrancyEffect = UIVibrancyEffect(forBlurEffect: self.effect as! UIBlurEffect)
+            let vibrancyView = UIVisualEffectView(effect: vibrancyEffect)
+            vibrancyView.frame = self.bounds
+            self.contentView.addSubview(vibrancyView)
+            self.hidden = false
+
             for i in 0..<choices.count {
                 let button = UIButton.buttonWithType(.System) as! UIButton
                 button.associatedObject = Block<() -> ()>({
-                    self.erase()
+                    self.hidden = true
+                    vibrancyView.removeFromSuperview()
                     completion(i)
                 })
                 button.addTarget(self, action: "buttonTouchedUpInside:", forControlEvents: .TouchUpInside)
 
-                button.backgroundColor = UIColor.grayColor()
                 button.setTitle(choices[i], forState: .Normal)
                 button.titleLabel?.font = UIFont.systemFontOfSize(64)
 
                 button.sizeToFit()
                 button.frame = CGRect(x: 0, y: 0, width: button.frame.width + 50, height: button.frame.height + 20)
                 button.center = CGPoint(x: self.center.x, y: self.bounds.height * CGFloat(i + 1) / CGFloat(choices.count + 1))
-                
-                self.addSubview(button)
-            }
-        }
-    }
 
-    func erase() {
-        for subview in self.subviews {
-            if subview is UIButton {
-                subview.removeFromSuperview()
+                vibrancyView.contentView.addSubview(button)
             }
         }
     }

@@ -178,32 +178,30 @@ AHFloat CircularEaseInOut(AHFloat p)
 	}
 }
 
-// Modeled after the exponential function y = 2^(10(x - 1))
+// Modeled after the exponential function y = 2^(10(x - 1), adjusted to (2^(10(x - 1)) - 1/1024) * 1024/1023
 AHFloat ExponentialEaseIn(AHFloat p)
 {
-	return (p == 0.0) ? p : pow(2, 10 * (p - 1));
+    return (pow(1024, p) - 1) / 1023;
 }
 
-// Modeled after the exponential function y = -2^(-10x) + 1
+// Modeled after the exponential function y = -2^(-10x) + 1, adjusted to (-2^(-10x) + 1) * 1024/1023
 AHFloat ExponentialEaseOut(AHFloat p)
 {
-	return (p == 1.0) ? p : 1 - pow(2, -10 * p);
+    return (1 - pow(2, -10 * p)) * 1024 / 1023;
 }
 
 // Modeled after the piecewise exponential
-// y = (1/2)2^(10(2x - 1))         ; [0,0.5)
-// y = -(1/2)*2^(-10(2x - 1))) + 1 ; [0.5,1]
+// y = (1/2)2^(10(2x - 1))        ; [0,0.5), adjusted to ((1/2)2^(10(2x - 1) - 1/2048) * 2048/2046
+// y = -(1/2)*2^(-10(2x - 1)) + 1 ; [0.5,1], adjusted to (-(1/2)*2^(-10(2*x - 1)) + 1/2) * 2048/2046 + 1/2
 AHFloat ExponentialEaseInOut(AHFloat p)
 {
-	if(p == 0.0 || p == 1.0) return p;
-	
 	if(p < 0.5)
 	{
-		return 0.5 * pow(2, (20 * p) - 10);
+		return pow(2, (20 * p) - 1) / 2046;
 	}
 	else
 	{
-		return -0.5 * pow(2, (-20 * p) + 10) + 1;
+        return (2047 - pow(2, 20 * (1 - p))) / 2046;
 	}
 }
 

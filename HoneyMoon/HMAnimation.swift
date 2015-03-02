@@ -4,14 +4,14 @@ public class HMAnimation {
     // MARK: - Zoom
 
     public static func zoomIn(node: SKNode, scale: CGFloat, x: CGFloat, y: CGFloat, time: NSTimeInterval, completion: () -> Void) {
-        HMAnimation.zoom(node, scale: scale, x: x, y: y, easeFunction: .Expo, easeMode: .EaseIn, time: time, completion: completion)
+        HMAnimation.zoom(node, scale: scale, x: x, y: y, easing: .ExpoEaseIn, time: time, completion: completion)
     }
 
     public static func zoomOut(node: SKNode, scale: CGFloat, x: CGFloat, y: CGFloat, time: NSTimeInterval, completion: () -> Void) {
-        HMAnimation.zoom(node, scale: scale, x: x, y: y, easeFunction: .Expo, easeMode: .EaseOut, time: time, completion: completion)
+        HMAnimation.zoom(node, scale: scale, x: x, y: y, easing: .ExpoEaseOut, time: time, completion: completion)
     }
 
-    static func zoom(node: SKNode, scale: CGFloat, x: CGFloat, y: CGFloat, easeFunction: CurveType, easeMode: EasingMode, time: NSTimeInterval, completion: () -> Void) {
+    static func zoom(node: SKNode, scale: CGFloat, x: CGFloat, y: CGFloat, easing: HMEasing, time: NSTimeInterval, completion: () -> Void) {
         let scaledX = -x * scale
         let scaledY = -y * scale
 
@@ -23,8 +23,8 @@ public class HMAnimation {
             return
         }
 
-        let scaleAction = SKEase.ScaleToWithNode(node, easeFunction: easeFunction, mode: easeMode, time: time, toValue: scale)
-        let moveAction = SKEase.MoveToWithNode(node, easeFunction: easeFunction, mode: easeMode, time: time, toVector: CGVector(dx: scaledX, dy: scaledY))
+        let scaleAction = HMAction.scaleTo(scale: scale, duration: time, easing: easing)
+        let moveAction = HMAction.moveTo(location: CGPoint(x: scaledX, y: scaledY), duration: time, easing: easing)
         node.runAction(SKAction.group([scaleAction, moveAction]), completion: completion)
     }
 
@@ -55,6 +55,6 @@ public class HMAnimation {
         let x = -node.position.x / node.xScale + dX
         let y = -node.position.y / node.yScale + dY
         println("adjustZoom, scale: \(scale), x: \(x), y: \(y)")
-        zoom(node, scale: scale, x: x, y: y, easeFunction: .Expo, easeMode: .EaseIn, time: 0) {}
+        zoom(node, scale: scale, x: x, y: y, easing: .ExpoEaseIn, time: 0) {}
     }
 }

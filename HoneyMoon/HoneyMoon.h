@@ -7,8 +7,4 @@ FOUNDATION_EXPORT double HoneyMoonVersionNumber;
 FOUNDATION_EXPORT const unsigned char HoneyMoonVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <HoneyMoon/PublicHeader.h>
-#import "easing.h"
-#import "EasingDeclarations.h"
-#import "SKEase.h"
-
 //#import "HoneyMoon-Swift.h"

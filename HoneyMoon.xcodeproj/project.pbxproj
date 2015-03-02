@@ -13,17 +13,13 @@
 		415DC9A21AA1FBF4006FBA03 /* HMQuestionContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415DC9A11AA1FBF4006FBA03 /* HMQuestionContainer.swift */; };
 		415DC9A41AA1FD91006FBA03 /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415DC9A31AA1FD91006FBA03 /* Block.swift */; };
 		415DC9A61AA1FE20006FBA03 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415DC9A51AA1FE20006FBA03 /* UIViewExtension.swift */; };
+		415DC9DD1AA41542006FBA03 /* HMAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415DC9DC1AA41542006FBA03 /* HMAction.swift */; };
+		415DC9DF1AA415DD006FBA03 /* HMEasing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415DC9DE1AA415DD006FBA03 /* HMEasing.swift */; };
 		4168B27A1A93083A005B3C8A /* HMAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4168B2791A93083A005B3C8A /* HMAnimation.swift */; };
 		4168B27E1A930A5B005B3C8A /* HMTextQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4168B27D1A930A5B005B3C8A /* HMTextQueue.swift */; };
 		41994A491A8CD60000DE4AE6 /* HoneyMoon.h in Headers */ = {isa = PBXBuildFile; fileRef = 41994A481A8CD60000DE4AE6 /* HoneyMoon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		41994A4F1A8CD60000DE4AE6 /* HoneyMoon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41994A431A8CD60000DE4AE6 /* HoneyMoon.framework */; };
 		41994A561A8CD60000DE4AE6 /* HoneyMoonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41994A551A8CD60000DE4AE6 /* HoneyMoonTests.swift */; };
-		41994A991A8CDB4300DE4AE6 /* easing.c in Sources */ = {isa = PBXBuildFile; fileRef = 41994A921A8CDB4300DE4AE6 /* easing.c */; };
-		41994A9A1A8CDB4300DE4AE6 /* easing.h in Headers */ = {isa = PBXBuildFile; fileRef = 41994A931A8CDB4300DE4AE6 /* easing.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		41994A9B1A8CDB4300DE4AE6 /* EasingDeclarations.h in Headers */ = {isa = PBXBuildFile; fileRef = 41994A941A8CDB4300DE4AE6 /* EasingDeclarations.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		41994A9C1A8CDB4300DE4AE6 /* SKEase.h in Headers */ = {isa = PBXBuildFile; fileRef = 41994A951A8CDB4300DE4AE6 /* SKEase.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		41994A9D1A8CDB4300DE4AE6 /* SKEase.m in Sources */ = {isa = PBXBuildFile; fileRef = 41994A961A8CDB4300DE4AE6 /* SKEase.m */; };
-		41994A9F1A8CDB4300DE4AE6 /* SpriteKit-Easing-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 41994A981A8CDB4300DE4AE6 /* SpriteKit-Easing-Prefix.pch */; };
 		41994AA41A8CDE7700DE4AE6 /* HMScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41994AA11A8CDE7700DE4AE6 /* HMScene.swift */; };
 		41994AA51A8CDE7700DE4AE6 /* HMSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41994AA21A8CDE7700DE4AE6 /* HMSceneDelegate.swift */; };
 		41994AA61A8CDE7700DE4AE6 /* HMViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41994AA31A8CDE7700DE4AE6 /* HMViewController.swift */; };
@@ -46,6 +42,8 @@
 		415DC9A11AA1FBF4006FBA03 /* HMQuestionContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMQuestionContainer.swift; sourceTree = "<group>"; };
 		415DC9A31AA1FD91006FBA03 /* Block.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
 		415DC9A51AA1FE20006FBA03 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		415DC9DC1AA41542006FBA03 /* HMAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMAction.swift; sourceTree = "<group>"; };
+		415DC9DE1AA415DD006FBA03 /* HMEasing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMEasing.swift; sourceTree = "<group>"; };
 		4168B2791A93083A005B3C8A /* HMAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMAnimation.swift; sourceTree = "<group>"; };
 		4168B27D1A930A5B005B3C8A /* HMTextQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMTextQueue.swift; sourceTree = "<group>"; };
 		41994A431A8CD60000DE4AE6 /* HoneyMoon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HoneyMoon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -54,12 +52,6 @@
 		41994A4E1A8CD60000DE4AE6 /* HoneyMoonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HoneyMoonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		41994A541A8CD60000DE4AE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		41994A551A8CD60000DE4AE6 /* HoneyMoonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoneyMoonTests.swift; sourceTree = "<group>"; };
-		41994A921A8CDB4300DE4AE6 /* easing.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = easing.c; sourceTree = "<group>"; };
-		41994A931A8CDB4300DE4AE6 /* easing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = easing.h; sourceTree = "<group>"; };
-		41994A941A8CDB4300DE4AE6 /* EasingDeclarations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasingDeclarations.h; sourceTree = "<group>"; };
-		41994A951A8CDB4300DE4AE6 /* SKEase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKEase.h; sourceTree = "<group>"; };
-		41994A961A8CDB4300DE4AE6 /* SKEase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKEase.m; sourceTree = "<group>"; };
-		41994A981A8CDB4300DE4AE6 /* SpriteKit-Easing-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SpriteKit-Easing-Prefix.pch"; sourceTree = "<group>"; };
 		41994AA11A8CDE7700DE4AE6 /* HMScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMScene.swift; sourceTree = "<group>"; };
 		41994AA21A8CDE7700DE4AE6 /* HMSceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMSceneDelegate.swift; sourceTree = "<group>"; };
 		41994AA31A8CDE7700DE4AE6 /* HMViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMViewController.swift; sourceTree = "<group>"; };
@@ -114,10 +106,11 @@
 				415DC9A11AA1FBF4006FBA03 /* HMQuestionContainer.swift */,
 				415DC9911AA1B0D5006FBA03 /* HMTextContainer.swift */,
 				4168B27D1A930A5B005B3C8A /* HMTextQueue.swift */,
+				415DC9DC1AA41542006FBA03 /* HMAction.swift */,
+				415DC9DE1AA415DD006FBA03 /* HMEasing.swift */,
 				415DC9A31AA1FD91006FBA03 /* Block.swift */,
 				415DC9A51AA1FE20006FBA03 /* UIViewExtension.swift */,
 				41994A481A8CD60000DE4AE6 /* HoneyMoon.h */,
-				41994A911A8CDB4300DE4AE6 /* SpriteKit-Easing */,
 				41994A461A8CD60000DE4AE6 /* Supporting Files */,
 			);
 			path = HoneyMoon;
@@ -148,19 +141,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		41994A911A8CDB4300DE4AE6 /* SpriteKit-Easing */ = {
-			isa = PBXGroup;
-			children = (
-				41994A921A8CDB4300DE4AE6 /* easing.c */,
-				41994A931A8CDB4300DE4AE6 /* easing.h */,
-				41994A941A8CDB4300DE4AE6 /* EasingDeclarations.h */,
-				41994A951A8CDB4300DE4AE6 /* SKEase.h */,
-				41994A961A8CDB4300DE4AE6 /* SKEase.m */,
-				41994A981A8CDB4300DE4AE6 /* SpriteKit-Easing-Prefix.pch */,
-			);
-			path = "SpriteKit-Easing";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -169,10 +149,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				41994A491A8CD60000DE4AE6 /* HoneyMoon.h in Headers */,
-				41994A9F1A8CDB4300DE4AE6 /* SpriteKit-Easing-Prefix.pch in Headers */,
-				41994A9A1A8CDB4300DE4AE6 /* easing.h in Headers */,
-				41994A9B1A8CDB4300DE4AE6 /* EasingDeclarations.h in Headers */,
-				41994A9C1A8CDB4300DE4AE6 /* SKEase.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,17 +250,17 @@
 			files = (
 				4168B27A1A93083A005B3C8A /* HMAnimation.swift in Sources */,
 				415DC9A41AA1FD91006FBA03 /* Block.swift in Sources */,
-				41994A991A8CDB4300DE4AE6 /* easing.c in Sources */,
 				41190CDE1A9762D500CE8701 /* HMStep.swift in Sources */,
 				4168B27E1A930A5B005B3C8A /* HMTextQueue.swift in Sources */,
+				415DC9DF1AA415DD006FBA03 /* HMEasing.swift in Sources */,
 				415DC9921AA1B0D5006FBA03 /* HMTextContainer.swift in Sources */,
 				41190CD01A955C5C00CE8701 /* HMAsync.swift in Sources */,
 				41994AA41A8CDE7700DE4AE6 /* HMScene.swift in Sources */,
 				415DC9A21AA1FBF4006FBA03 /* HMQuestionContainer.swift in Sources */,
 				415DC9A61AA1FE20006FBA03 /* UIViewExtension.swift in Sources */,
+				415DC9DD1AA41542006FBA03 /* HMAction.swift in Sources */,
 				41994AA51A8CDE7700DE4AE6 /* HMSceneDelegate.swift in Sources */,
 				41994AA61A8CDE7700DE4AE6 /* HMViewController.swift in Sources */,
-				41994A9D1A8CDB4300DE4AE6 /* SKEase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

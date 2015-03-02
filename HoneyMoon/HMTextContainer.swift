@@ -3,3 +3,4 @@ public protocol HMTextContainer: AnyObject {
 }
 
 extension UITextView: HMTextContainer {}
+extension UITextField: HMTextContainer {}

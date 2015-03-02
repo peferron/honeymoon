@@ -7,11 +7,14 @@ public class HMDefaultTextContainer: UITextView {
 
     required public init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        initStyle()
     }
 
     override public init(frame: CGRect) {
         super.init(frame: frame)
+    }
+
+    override public init(frame: CGRect, textContainer: NSTextContainer?) {
+        super.init(frame: frame, textContainer: textContainer)
         initStyle()
     }
 

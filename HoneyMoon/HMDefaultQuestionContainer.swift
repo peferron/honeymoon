@@ -1,6 +1,6 @@
 import UIKit
 
-public class HMQuestionContainer: UIVisualEffectView {
+public class HMDefaultQuestionContainer: UIVisualEffectView {
     public required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }

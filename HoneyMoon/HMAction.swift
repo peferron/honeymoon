@@ -1,37 +1,98 @@
 import SpriteKit
 
 public class HMAction: SKAction {
-    public class func moveTo(location end: CGPoint, duration: NSTimeInterval, easing: HMEasing) -> SKAction {
+    // MARK: - Move
+
+    public class func moveTo(location: CGPoint, duration: NSTimeInterval, easing: HMEasing) -> SKAction {
         let easingFunction = easing.getFunction()
         var first = true
         var start: CGPoint?
-        var delta: CGPoint?
-        return SKAction.customActionWithDuration(duration) { (node, time) in
+        var delta: CGVector?
+        return customActionWithDuration(duration) { (node, time) in
             if first {
                 first = false
                 start = node.position
-                delta = CGPoint(x: end.x - start!.x, y: end.y - start!.y)
-                return
+                delta = CGVector(dx: location.x - start!.x, dy: location.y - start!.y)
+                if duration > 0 {
+                    return
+                }
             }
-            let progress = easingFunction(time / CGFloat(duration))
-            node.position = CGPoint(x: start!.x + delta!.x * progress, y: start!.y + delta!.y * progress)
+            let progress = duration <= 0 ? 1 : easingFunction(time / CGFloat(duration))
+            node.position = CGPoint(x: start!.x + delta!.dx * progress, y: start!.y + delta!.dy * progress)
         }
     }
 
-    public class func scaleTo(scale end: CGFloat, duration: NSTimeInterval, easing: HMEasing) -> SKAction {
+    // MARK: - Scale
+
+    public class func scaleTo(scale: CGFloat, duration: NSTimeInterval, easing: HMEasing) -> SKAction {
         let easingFunction = easing.getFunction()
         var first = true
         var start: CGFloat?
         var delta: CGFloat?
-        return SKAction.customActionWithDuration(duration) { (node, time) in
+        return customActionWithDuration(duration) { (node, time) in
             if first {
                 first = false
                 start = node.xScale
-                delta = end - start!
-                return
+                delta = scale - start!
+                if duration > 0 {
+                    return
+                }
             }
-            let progress = easingFunction(time / CGFloat(duration))
+            let progress = duration <= 0 ? 1 : easingFunction(time / CGFloat(duration))
             node.setScale(start! + delta! * progress)
         }
+    }
+
+    // MARK: - Zoom
+
+    public class func zoomTo(#scale: CGFloat, location: CGPoint, duration: NSTimeInterval, easing: HMEasing) -> SKAction {
+        let scaledLocation = locationAtScale(location, scale)
+        let scaleAction = scaleTo(scale, duration: duration, easing: easing)
+        let moveAction = moveTo(scaledLocation, duration: duration, easing: easing)
+        return group([scaleAction, moveAction])
+    }
+
+    public class func zoomInTo(#scale: CGFloat, location: CGPoint, duration: NSTimeInterval) -> SKAction {
+        return zoomTo(scale: scale, location: location, duration: duration, easing: .ExpoEaseIn)
+    }
+
+    public class func zoomOutTo(#scale: CGFloat, location: CGPoint, duration: NSTimeInterval) -> SKAction {
+        return zoomTo(scale: scale, location: location, duration: duration, easing: .ExpoEaseOut)
+    }
+
+    public class func zoomImmediately(node: SKNode, scale: CGFloat, location: CGPoint) {
+        node.setScale(scale)
+        node.position = locationAtScale(location, scale)
+    }
+
+    public class func adjustZoom(node: SKNode, key: String) {
+        switch key {
+        case "w":
+            adjustZoom(node, scale: 0, location: CGVector(dx: 0, dy: 1))
+        case "a":
+            adjustZoom(node, scale: 0, location: CGVector(dx: -1, dy: 0))
+        case "s":
+            adjustZoom(node, scale: 0, location: CGVector(dx: 0, dy: -1))
+        case "d":
+            adjustZoom(node, scale: 0, location: CGVector(dx: 1, dy: 0))
+        case "r":
+            adjustZoom(node, scale: 1, location: CGVector(dx: 0, dy: 0))
+        case "f":
+            adjustZoom(node, scale: -1, location: CGVector(dx: 0, dy: 0))
+        default:
+            break
+        }
+    }
+
+    public class func adjustZoom(node: SKNode, scale: CGFloat, location: CGVector) {
+        assert(node.xScale == node.yScale, "node should have equal xScale and yScale")
+        let adjustedScale = node.xScale + scale
+        let adjustedLocation = CGPoint(x: -node.position.x / node.xScale + location.dx, y: -node.position.y / node.yScale + location.dy)
+        println("adjustZoom, scale: \(adjustedScale), location: \(adjustedLocation)")
+        zoomImmediately(node, scale: adjustedScale, location: adjustedLocation)
+    }
+
+    class func locationAtScale(location: CGPoint, _ scale: CGFloat) -> CGPoint {
+        return CGPoint(x: -location.x * scale, y: -location.y * scale)
     }
 }

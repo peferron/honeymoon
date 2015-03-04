@@ -23,9 +23,8 @@ public class HMDefaultTextContainer: UITextView {
         backgroundColor = nil
 
         // Init text style.
-        textAlignment = .Justified
-        textColor = UIColor.redColor()
-        font = UIFont.systemFontOfSize(30)
+        textColor = UIColor.whiteColor()
+        font = UIFont.systemFontOfSize(26)
 
         // Disable user interaction.
         editable = false

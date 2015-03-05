@@ -17,6 +17,7 @@
 		415DC9DF1AA415DD006FBA03 /* HMEasing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415DC9DE1AA415DD006FBA03 /* HMEasing.swift */; };
 		415DC9E11AA43EDA006FBA03 /* HMDefaultTextContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415DC9E01AA43EDA006FBA03 /* HMDefaultTextContainer.swift */; };
 		4168B27E1A930A5B005B3C8A /* HMTextQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4168B27D1A930A5B005B3C8A /* HMTextQueue.swift */; };
+		4174EF1C1AA807B1005429DD /* HMState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4174EF1B1AA807B1005429DD /* HMState.swift */; };
 		41994A491A8CD60000DE4AE6 /* HoneyMoon.h in Headers */ = {isa = PBXBuildFile; fileRef = 41994A481A8CD60000DE4AE6 /* HoneyMoon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		41994A4F1A8CD60000DE4AE6 /* HoneyMoon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41994A431A8CD60000DE4AE6 /* HoneyMoon.framework */; };
 		41994A561A8CD60000DE4AE6 /* HoneyMoonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41994A551A8CD60000DE4AE6 /* HoneyMoonTests.swift */; };
@@ -46,6 +47,7 @@
 		415DC9DE1AA415DD006FBA03 /* HMEasing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMEasing.swift; sourceTree = "<group>"; };
 		415DC9E01AA43EDA006FBA03 /* HMDefaultTextContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMDefaultTextContainer.swift; sourceTree = "<group>"; };
 		4168B27D1A930A5B005B3C8A /* HMTextQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMTextQueue.swift; sourceTree = "<group>"; };
+		4174EF1B1AA807B1005429DD /* HMState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMState.swift; sourceTree = "<group>"; };
 		41994A431A8CD60000DE4AE6 /* HoneyMoon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HoneyMoon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		41994A471A8CD60000DE4AE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		41994A481A8CD60000DE4AE6 /* HoneyMoon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HoneyMoon.h; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				4168B27D1A930A5B005B3C8A /* HMTextQueue.swift */,
 				415DC9DC1AA41542006FBA03 /* HMAction.swift */,
 				415DC9DE1AA415DD006FBA03 /* HMEasing.swift */,
+				4174EF1B1AA807B1005429DD /* HMState.swift */,
 				415DC9A31AA1FD91006FBA03 /* Block.swift */,
 				415DC9A51AA1FE20006FBA03 /* UIViewExtension.swift */,
 				41994A481A8CD60000DE4AE6 /* HoneyMoon.h */,
@@ -250,6 +253,7 @@
 			files = (
 				415DC9A41AA1FD91006FBA03 /* Block.swift in Sources */,
 				41190CDE1A9762D500CE8701 /* HMStep.swift in Sources */,
+				4174EF1C1AA807B1005429DD /* HMState.swift in Sources */,
 				4168B27E1A930A5B005B3C8A /* HMTextQueue.swift in Sources */,
 				415DC9DF1AA415DD006FBA03 /* HMEasing.swift in Sources */,
 				415DC9921AA1B0D5006FBA03 /* HMTextContainer.swift in Sources */,

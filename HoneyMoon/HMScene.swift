@@ -84,10 +84,7 @@ public class HMScene: SKScene {
         didSet {
             println("\(filename): didSet step: \(oldValue) -> \(step)")
             if !didSetStep(oldValue) {
-                // Use assert(false, msg) instead of assertionFailure(msg) to prevent the compiler from issuing a
-                // warning "will never be executed" for the following code. Assertions are supposed to be no-ops in
-                // optimized builds, so this warning doesn't seem right (Xcode 6.3 beta).
-                assert(false, "\(filename): cannot set step: \(oldValue) -> \(step)")
+                println("\(filename): cannot set step: \(oldValue) -> \(step)")
                 step = oldValue
             }
         }

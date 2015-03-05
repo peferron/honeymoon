@@ -88,11 +88,7 @@ public class HMViewController: UIViewController, HMSceneDelegate {
     }
 
     override public func supportedInterfaceOrientations() -> Int {
-        if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
-            return Int(UIInterfaceOrientationMask.AllButUpsideDown.rawValue)
-        } else {
-            return Int(UIInterfaceOrientationMask.All.rawValue)
-        }
+        return Int(UIInterfaceOrientationMask.Landscape.rawValue)
     }
 
     override public func prefersStatusBarHidden() -> Bool {

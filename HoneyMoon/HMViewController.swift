@@ -95,11 +95,6 @@ public class HMViewController: UIViewController, HMSceneDelegate {
         }
     }
 
-    override public func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Release any cached data, images, etc that aren't in use.
-    }
-
     override public func prefersStatusBarHidden() -> Bool {
         return true
     }

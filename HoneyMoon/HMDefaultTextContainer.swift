@@ -1,10 +1,6 @@
 import UIKit
 
 public class HMDefaultTextContainer: UITextView {
-    override public init() {
-        super.init()
-    }
-
     required public init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }

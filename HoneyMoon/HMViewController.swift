@@ -12,7 +12,7 @@ public class HMViewController: UIViewController, HMSceneDelegate {
         outgoing = incoming
 
         let incomingScene = sceneClass.unarchiveFromFile()
-        println("GKViewController: presentScene: \(incomingScene.filename)")
+        println("HMViewController: presentScene: \(incomingScene.filename)")
         incomingScene.scaleMode = .AspectFit
         incomingScene.sceneDelegate = self
         incoming = createSKView()
@@ -30,7 +30,7 @@ public class HMViewController: UIViewController, HMSceneDelegate {
     // MARK: - HMSceneDelegate
 
     public func didFinishForScene(scene: HMScene, nextSceneClass: HMScene.Type) {
-        println("GKViewController: didFinishForScene: \(scene.filename) -> \(nextSceneClass.classFilename)")
+        println("HMViewController: didFinishForScene: \(scene.filename) -> \(nextSceneClass.classFilename)")
         presentScene(nextSceneClass)
     }
 

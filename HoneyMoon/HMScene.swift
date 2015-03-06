@@ -5,8 +5,6 @@ public class HMScene: SKScene {
 
     override public func didMoveToView(view: SKView) {
         backgroundColor = UIColor.blackColor()
-        step = HMStep.start
-
         if HMScene.debugShowFilename {
             addFilenameLabel()
         }
@@ -41,7 +39,7 @@ public class HMScene: SKScene {
         return NSStringFromClass(self).componentsSeparatedByString(".")[1]
     }
 
-    var filename: String {
+    public var filename: String {
         return self.dynamicType.classFilename
     }
 
@@ -76,21 +74,5 @@ public class HMScene: SKScene {
         label.position = CGPoint(x: frame.width - 15, y: frame.height - 15)
         label.zPosition = 100
         addChild(label)
-    }
-
-    // MARK: - Step
-
-    public var step: String = HMStep.none {
-        didSet {
-            println("\(filename): didSet step: \(oldValue) -> \(step)")
-            if !didSetStep(oldValue) {
-                println("\(filename): cannot set step: \(oldValue) -> \(step)")
-                step = oldValue
-            }
-        }
-    }
-
-    public func didSetStep(oldValue: String) -> Bool {
-        return false
     }
 }

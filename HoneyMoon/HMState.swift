@@ -1,6 +1,7 @@
 public struct HMState {
-    public let scene: String
-    public init(scene: String) {
-        self.scene = scene
+    public let sceneClass: HMScene.Type
+    
+    public init(sceneClass: HMScene.Type) {
+        self.sceneClass = sceneClass
     }
 }

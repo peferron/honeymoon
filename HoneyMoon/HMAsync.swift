@@ -37,4 +37,10 @@ public class HMAsync {
         action { dispatch_semaphore_signal(semaphore) }
         dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
     }
+
+    public static func wait(seconds: Float, completion: () -> Void) {
+        let nanoseconds = Int64(Double(seconds) * Double(NSEC_PER_SEC))
+        let time = dispatch_time(DISPATCH_TIME_NOW, nanoseconds)
+        dispatch_after(time, dispatch_get_main_queue(), completion)
+    }
 }

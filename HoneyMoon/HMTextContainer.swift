@@ -1,4 +1,4 @@
-public protocol HMTextContainer: AnyObject {
+public protocol HMTextContainer: class {
     var text: String! { get set }
 }
 

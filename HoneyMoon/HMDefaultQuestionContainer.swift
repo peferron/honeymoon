@@ -19,14 +19,14 @@ public class HMDefaultQuestionContainer: UIVisualEffectView {
 
     public func ask(choices: [String], completion: Int -> ()) {
         dispatch_async(dispatch_get_main_queue()) {
-            let vibrancyEffect = UIVibrancyEffect(forBlurEffect: self.effect as! UIBlurEffect)
+            let vibrancyEffect = UIVibrancyEffect(forBlurEffect: self.effect as UIBlurEffect)
             let vibrancyView = UIVisualEffectView(effect: vibrancyEffect)
             vibrancyView.frame = self.bounds
             self.contentView.addSubview(vibrancyView)
             self.hidden = false
 
             for i in 0..<choices.count {
-                let button = UIButton.buttonWithType(.System) as! UIButton
+                let button = UIButton.buttonWithType(.System) as UIButton
                 button.associatedObject = Block<() -> ()>({
                     self.hidden = true
                     vibrancyView.removeFromSuperview()

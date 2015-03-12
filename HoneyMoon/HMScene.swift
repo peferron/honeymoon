@@ -21,7 +21,7 @@ public class HMScene: SKScene {
         }
     }
 
-    override public func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override public func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
 //        for touch: AnyObject in touches {
 //            let location = touch.locationInNode(self)
 //            println("Touch, x: \(location.x), y: \(location.y)")
@@ -48,20 +48,21 @@ public class HMScene: SKScene {
         let sceneData = NSData(contentsOfFile: path, options: .DataReadingMappedIfSafe, error: nil)!
         let archiver = NSKeyedUnarchiver(forReadingWithData: sceneData)
         archiver.setClass(classForKeyedUnarchiver(), forClassName: "SKScene")
-        let scene = archiver.decodeObjectForKey(NSKeyedArchiveRootObjectKey) as! HMScene
+        let scene = archiver.decodeObjectForKey(NSKeyedArchiveRootObjectKey) as HMScene
         archiver.finishDecoding()
         return scene
     }
 
-    // Using a getter and setter here because otherwise the Swift compiler crashes with a segmentation fault (Xcode 6.3
-    // beta).
-    static var internalDebugShowFilename = false
-    public static var debugShowFilename: Bool {
+    // Class variables are not yet supported. A workaround is to use a static var in a private struct.
+    private struct DebugShowFilenameWrapper {
+        static var value: Bool = false
+    }
+    public class var debugShowFilename: Bool {
         get {
-            return internalDebugShowFilename
+            return DebugShowFilenameWrapper.value
         }
         set {
-            internalDebugShowFilename = newValue
+            DebugShowFilenameWrapper.value = newValue
         }
     }
 

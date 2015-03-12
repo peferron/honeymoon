@@ -1,12 +1,15 @@
 extension UIView {
-    private static var associatedObjectKey: UInt8 = 0
+    // Class variables are not yet supported. A workaround is to use a static var in a private struct.
+    private struct AssociatedObjectKeyWrapper {
+        static var value: UInt8 = 0
+    }
 
     var associatedObject: AnyObject? {
         get {
-            return objc_getAssociatedObject(self, &UIView.associatedObjectKey)
+            return objc_getAssociatedObject(self, &AssociatedObjectKeyWrapper.value)
         }
         set {
-            objc_setAssociatedObject(self, &UIView.associatedObjectKey, newValue, objc_AssociationPolicy(OBJC_ASSOCIATION_RETAIN))
+            objc_setAssociatedObject(self, &AssociatedObjectKeyWrapper.value, newValue, objc_AssociationPolicy(OBJC_ASSOCIATION_RETAIN))
         }
     }
 }

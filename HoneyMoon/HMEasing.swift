@@ -1,7 +1,6 @@
 public enum HMEasing {
-    case ExpoEaseIn
-    case ExpoEaseOut
-    case QuadraticEaseOut
+    case ExpoEaseIn, ExpoEaseOut
+    case QuadraticEaseOut, QuadraticEaseInOut
 
     func getFunction() -> (CGFloat -> CGFloat) {
         switch self {
@@ -11,6 +10,8 @@ public enum HMEasing {
             return HMEasing.expoEaseOut
         case .QuadraticEaseOut:
             return HMEasing.quadraticEaseOut
+        case .QuadraticEaseInOut:
+            return HMEasing.quadraticEaseInOut
         }
     }
 
@@ -24,5 +25,12 @@ public enum HMEasing {
 
     static func quadraticEaseOut(p: CGFloat) -> CGFloat {
         return -(p * (p - 2))
+    }
+
+    static func quadraticEaseInOut(p: CGFloat) -> CGFloat {
+        if p < 0.5 {
+            return 2 * p * p;
+        }
+        return (-2 * p * p) + (4 * p) - 1;
     }
 }

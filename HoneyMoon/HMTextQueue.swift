@@ -23,7 +23,7 @@ public class HMTextQueue {
         self.container = container
     }
 
-    public func erase() -> HMTextQueue {
+    public func clear() -> HMTextQueue {
         return wait { completion in
             dispatch_async(dispatch_get_main_queue()) {
                 self.container.text = nil

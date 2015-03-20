@@ -32,7 +32,7 @@ public class HMTextQueue {
         }
     }
 
-    public func write(text: String) -> HMTextQueue {
+    public func print(text: String) -> HMTextQueue {
         return wait { completion in
             dispatch_async(dispatch_get_main_queue()) {
                 self.container.text = (self.container.text ?? "") + text

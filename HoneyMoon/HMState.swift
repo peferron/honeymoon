@@ -1,26 +1,18 @@
-public struct HMState {
-    public let sceneClass: HMScene.Type
-    
-    public init(sceneClass: HMScene.Type) {
-        self.sceneClass = sceneClass
+public class HMState {
+    private class var sceneClassNameKey: String {
+        return "sceneClassName"
     }
 
-    // MARK: - Save & load
-
-    static let sceneClassNameKey = "state.sceneClassName"
-
-    public func save() {
-        let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setObject(NSStringFromClass(self.sceneClass), forKey: HMState.sceneClassNameKey)
-        defaults.synchronize()
-    }
-
-    public static func load() -> HMState? {
-        let defaults = NSUserDefaults.standardUserDefaults()
-        let sceneClassName = defaults.stringForKey(HMState.sceneClassNameKey)
-        if let sceneClass = NSClassFromString(sceneClassName) as? HMScene.Type {
-            return HMState(sceneClass: sceneClass)
+    public class var sceneClass: HMScene.Type? {
+        get {
+            if let sceneClassName = NSUserDefaults.standardUserDefaults().stringForKey(sceneClassNameKey) {
+                return NSClassFromString(sceneClassName) as? HMScene.Type
+            }
+            return nil
         }
-        return nil
+        set {
+            let sceneClassName = NSStringFromClass(newValue)
+            NSUserDefaults.standardUserDefaults().setObject(sceneClassName, forKey: sceneClassNameKey)
+        }
     }
 }

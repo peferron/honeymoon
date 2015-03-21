@@ -1,7 +1,7 @@
 import SpriteKit
 
 public class HMScene: SKScene {
-    public var sceneDelegate: HMSceneDelegate?
+    public weak var sceneDelegate: HMSceneDelegate?
 
     override public func didMoveToView(view: SKView) {
         backgroundColor = UIColor.blackColor()

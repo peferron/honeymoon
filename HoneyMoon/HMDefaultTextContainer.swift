@@ -67,22 +67,22 @@ public class HMDefaultTextContainer: UIView, NSLayoutManagerDelegate, HMTextCont
         self.layer.sublayers = nil
 
         if layoutManager.numberOfGlyphs > 0 {
-            addTextLayerForGlyphIndex(0, currentLayoutCounter: currentLayoutCounter)
+            addTextLayerForGlyphIndex(0, startTime: CACurrentMediaTime(), currentLayoutCounter: currentLayoutCounter)
         }
     }
 
-    func addTextLayerForGlyphIndex(glyphIndex: Int, currentLayoutCounter: Int) {
+    func addTextLayerForGlyphIndex(glyphIndex: Int, startTime: CFTimeInterval, currentLayoutCounter: Int) {
         if glyphIndex >= layoutManager.numberOfGlyphs || currentLayoutCounter != self.layoutCounter {
             return
         }
         for var i = 0; i < groupSize && glyphIndex + i < layoutManager.numberOfGlyphs; i++ {
             let textLayer = self.createTextLayerForGlyphIndex(glyphIndex + i)
-            self.animateTextLayer(textLayer, index: glyphIndex + i)
+            self.animateTextLayer(textLayer, startTime: startTime, index: glyphIndex + i)
             self.layer.addSublayer(textLayer)
         }
         let time = dispatch_time(DISPATCH_TIME_NOW, Int64(groupInterval))
         dispatch_after(time, dispatch_get_main_queue()) {
-            self.addTextLayerForGlyphIndex(glyphIndex + self.groupSize, currentLayoutCounter: currentLayoutCounter)
+            self.addTextLayerForGlyphIndex(glyphIndex + self.groupSize, startTime: startTime, currentLayoutCounter: currentLayoutCounter)
         }
     }
 
@@ -113,6 +113,6 @@ public class HMDefaultTextContainer: UIView, NSLayoutManagerDelegate, HMTextCont
         return NSAttributedString(string: string ?? "")
     }
 
-    public func animateTextLayer(textLayer: CATextLayer, index: Int) {
+    public func animateTextLayer(textLayer: CATextLayer, startTime: CFTimeInterval, index: Int) {
     }
 }

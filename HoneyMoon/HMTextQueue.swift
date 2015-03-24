@@ -26,6 +26,8 @@ public class HMTextQueue {
     public func clear() -> HMTextQueue {
         return wait { completion in
             dispatch_async(dispatch_get_main_queue()) {
+                // No need for an [unowned self] or [weak self] here, the queue will only be deallocated after all GCD
+                // closures are executed.
                 self.container.text = nil
                 completion()
             }
@@ -35,6 +37,8 @@ public class HMTextQueue {
     public func print(text: String) -> HMTextQueue {
         return wait { completion in
             dispatch_async(dispatch_get_main_queue()) {
+                // No need for an [unowned self] or [weak self] here, the queue will only be deallocated after all GCD
+                // closures are executed.
                 self.container.text = (self.container.text ?? "") + text
                 completion()
             }

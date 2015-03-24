@@ -81,8 +81,9 @@ public class HMDefaultTextContainer: UIView, NSLayoutManagerDelegate, HMTextCont
             layer.addSublayer(textLayer)
         }
         let time = dispatch_time(DISPATCH_TIME_NOW, Int64(HMDefaultTextContainer.groupInterval))
-        dispatch_after(time, dispatch_get_main_queue()) {
-            self.addTextLayerForGlyphIndex(glyphIndex + HMDefaultTextContainer.groupSize, startTime: startTime, currentLayoutCounter: currentLayoutCounter)
+        dispatch_after(time, dispatch_get_main_queue()) { [weak self] in
+            self?.addTextLayerForGlyphIndex(glyphIndex + HMDefaultTextContainer.groupSize, startTime: startTime, currentLayoutCounter: currentLayoutCounter)
+            return
         }
     }
 

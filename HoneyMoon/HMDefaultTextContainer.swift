@@ -1,8 +1,8 @@
 import UIKit
 
 public class HMDefaultTextContainer: UIView, NSLayoutManagerDelegate, HMTextContainer {
-    let groupSize = 10
-    let groupInterval = 20 * NSEC_PER_MSEC
+    class var groupSize: Int { return 10 }
+    class var groupInterval: UInt64 { return 20 * NSEC_PER_MSEC }
 
     let textStorage = NSTextStorage()
     let textContainer = NSTextContainer()
@@ -75,14 +75,14 @@ public class HMDefaultTextContainer: UIView, NSLayoutManagerDelegate, HMTextCont
         if glyphIndex >= layoutManager.numberOfGlyphs || currentLayoutCounter != self.layoutCounter {
             return
         }
-        for var i = 0; i < groupSize && glyphIndex + i < layoutManager.numberOfGlyphs; i++ {
-            let textLayer = self.createTextLayerForGlyphIndex(glyphIndex + i)
-            self.animateTextLayer(textLayer, startTime: startTime, index: glyphIndex + i)
-            self.layer.addSublayer(textLayer)
+        for var i = 0; i < HMDefaultTextContainer.groupSize && glyphIndex + i < layoutManager.numberOfGlyphs; i++ {
+            let textLayer = createTextLayerForGlyphIndex(glyphIndex + i)
+            animateTextLayer(textLayer, startTime: startTime, index: glyphIndex + i)
+            layer.addSublayer(textLayer)
         }
-        let time = dispatch_time(DISPATCH_TIME_NOW, Int64(groupInterval))
+        let time = dispatch_time(DISPATCH_TIME_NOW, Int64(HMDefaultTextContainer.groupInterval))
         dispatch_after(time, dispatch_get_main_queue()) {
-            self.addTextLayerForGlyphIndex(glyphIndex + self.groupSize, startTime: startTime, currentLayoutCounter: currentLayoutCounter)
+            self.addTextLayerForGlyphIndex(glyphIndex + HMDefaultTextContainer.groupSize, startTime: startTime, currentLayoutCounter: currentLayoutCounter)
         }
     }
 

@@ -15,4 +15,8 @@ public class HMState {
             NSUserDefaults.standardUserDefaults().setObject(sceneClassName, forKey: sceneClassNameKey)
         }
     }
+
+    public class func valid() -> Bool {
+        return sceneClass != nil
+    }
 }

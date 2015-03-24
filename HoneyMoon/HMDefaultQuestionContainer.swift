@@ -27,7 +27,7 @@ public class HMDefaultQuestionContainer: UIVisualEffectView {
 
             for i in 0..<choices.count {
                 let button = UIButton.buttonWithType(.System) as UIButton
-                button.associatedObject = Block<() -> ()>({
+                button.associatedObject = Block<() -> ()>({ [unowned self] in
                     self.hidden = true
                     vibrancyView.removeFromSuperview()
                     completion(i)

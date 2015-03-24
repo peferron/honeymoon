@@ -15,7 +15,7 @@ public class HMScene: SKScene {
     public var onTouch: (() -> Void)?
 
     public func waitForTouch(completion: () -> Void) {
-        onTouch = {
+        onTouch = { [unowned self] in
             self.onTouch = nil
             completion()
         }

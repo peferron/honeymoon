@@ -1,3 +1,5 @@
+import Foundation
+
 public class HMAsync {
     public typealias Action = (completion: () -> Void) -> Void
 

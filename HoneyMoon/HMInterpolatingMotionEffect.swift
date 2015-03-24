@@ -1,3 +1,5 @@
+import UIKit
+
 public class HMInterpolatingMotionEffect: UIInterpolatingMotionEffect {
     class var key: String {
         return "key"

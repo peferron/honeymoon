@@ -1,3 +1,5 @@
+import UIKit
+
 public class HMInterpolatingMotionEffectGroup: UIMotionEffectGroup {
     convenience public init(callback: (horizontal: Float, vertical: Float) -> Void) {
         self.init()

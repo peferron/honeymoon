@@ -1,3 +1,5 @@
+import UIKit
+
 extension UIView {
     // Class variables are not yet supported. A workaround is to use a static var in a private struct.
     private struct AssociatedObjectKeyWrapper {

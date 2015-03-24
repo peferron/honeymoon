@@ -1,3 +1,5 @@
+import Foundation
+
 public class HMState {
     private class var sceneClassNameKey: String {
         return "sceneClassName"

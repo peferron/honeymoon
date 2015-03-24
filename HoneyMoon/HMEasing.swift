@@ -1,3 +1,5 @@
+import CoreGraphics
+
 public enum HMEasing {
     case CubicEaseInOut
     case ExpoEaseIn, ExpoEaseOut

@@ -3,7 +3,7 @@ import SpriteKit
 public class HMAction: SKAction {
     // MARK: - Move
 
-    public class func moveTo(location: CGPoint, duration: NSTimeInterval, easingFunction: CGFloat -> CGFloat) -> SKAction {
+    public class func moveTo(location: CGPoint, duration: NSTimeInterval, easing: CGFloat -> CGFloat) -> SKAction {
         var first = true
         var start: CGPoint?
         var delta: CGVector?
@@ -16,14 +16,14 @@ public class HMAction: SKAction {
                     return
                 }
             }
-            let progress = duration <= 0 ? 1 : easingFunction(time / CGFloat(duration))
+            let progress = duration <= 0 ? 1 : easing(time / CGFloat(duration))
             node.position = CGPoint(x: start!.x + delta!.dx * progress, y: start!.y + delta!.dy * progress)
         }
     }
 
     // MARK: - Scale
 
-    public class func scaleTo(scale: CGFloat, duration: NSTimeInterval, easingFunction: CGFloat -> CGFloat) -> SKAction {
+    public class func scaleTo(scale: CGFloat, duration: NSTimeInterval, easing: CGFloat -> CGFloat) -> SKAction {
         var first = true
         var start: CGFloat?
         var delta: CGFloat?
@@ -36,26 +36,26 @@ public class HMAction: SKAction {
                     return
                 }
             }
-            let progress = duration <= 0 ? 1 : easingFunction(time / CGFloat(duration))
+            let progress = duration <= 0 ? 1 : easing(time / CGFloat(duration))
             node.setScale(start! + delta! * progress)
         }
     }
 
     // MARK: - Zoom
 
-    public class func zoomTo(#scale: CGFloat, location: CGPoint, duration: NSTimeInterval, easingFunction: CGFloat -> CGFloat) -> SKAction {
+    public class func zoomTo(#scale: CGFloat, location: CGPoint, duration: NSTimeInterval, easing: CGFloat -> CGFloat) -> SKAction {
         let scaledLocation = locationAtScale(location, scale)
-        let scaleAction = scaleTo(scale, duration: duration, easingFunction: easingFunction)
-        let moveAction = moveTo(scaledLocation, duration: duration, easingFunction: easingFunction)
+        let scaleAction = scaleTo(scale, duration: duration, easing: easing)
+        let moveAction = moveTo(scaledLocation, duration: duration, easing: easing)
         return group([scaleAction, moveAction])
     }
 
     public class func zoomInTo(#scale: CGFloat, location: CGPoint, duration: NSTimeInterval) -> SKAction {
-        return zoomTo(scale: scale, location: location, duration: duration, easingFunction: HMEasing.expoEaseIn)
+        return zoomTo(scale: scale, location: location, duration: duration, easing: HMEasing.expoEaseIn)
     }
 
     public class func zoomOutTo(#scale: CGFloat, location: CGPoint, duration: NSTimeInterval) -> SKAction {
-        return zoomTo(scale: scale, location: location, duration: duration, easingFunction: HMEasing.expoEaseOut)
+        return zoomTo(scale: scale, location: location, duration: duration, easing: HMEasing.expoEaseOut)
     }
 
     public class func zoomImmediately(node: SKNode, scale: CGFloat, location: CGPoint) {

@@ -45,27 +45,6 @@ public class HMDefaultTextContainer: UIView, NSLayoutManagerDelegate, HMTextCont
         textContainer.maximumNumberOfLines = 0
     }
 
-//    public func layoutManager(layoutManager: NSLayoutManager, didCompleteLayoutForTextContainer textContainer: NSTextContainer?, atEnd layoutFinishedFlag: Bool) {
-//        layoutCounter++
-//        let currentLayoutCounter = layoutCounter
-//
-//        self.layer.sublayers = nil
-//
-//        let numberOfGlyphs = layoutManager.numberOfGlyphs
-//        for var i = 0; i < numberOfGlyphs; i++ {
-//            let glyphIndex = i // immutable copy of i for the GCD block
-//            let time = dispatch_time(DISPATCH_TIME_NOW, Int64(UInt64(glyphIndex) * 3 * NSEC_PER_MSEC))
-//            dispatch_after(time, dispatch_get_main_queue()) {
-//                if currentLayoutCounter != self.layoutCounter {
-//                    return
-//                }
-//                let textLayer = self.createTextLayerForGlyphIndex(glyphIndex)
-//                self.animateTextLayer(textLayer, index: glyphIndex)
-//                self.layer.addSublayer(textLayer)
-//            }
-//        }
-//    }
-
     public func layoutManager(layoutManager: NSLayoutManager, didCompleteLayoutForTextContainer textContainer: NSTextContainer?, atEnd layoutFinishedFlag: Bool) {
         layoutCounter++
         let currentLayoutCounter = layoutCounter

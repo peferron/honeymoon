@@ -16,6 +16,12 @@ public class HMDefaultTextContainer: UIView, NSLayoutManagerDelegate, HMTextCont
         }
     }
 
+    override public var frame: CGRect {
+        didSet {
+            textContainer.size = bounds.size
+        }
+    }
+
     override public init(frame: CGRect) {
         super.init(frame: frame)
         customInit()

@@ -9,6 +9,7 @@ public class HMDefaultTextContainer: UIView, NSLayoutManagerDelegate, HMTextCont
     let layoutManager = NSLayoutManager()
 
     var layoutCounter = 0
+    var layoutAttributedString: NSAttributedString = NSAttributedString(string: "")
 
     public var text: String? {
         didSet {
@@ -46,28 +47,38 @@ public class HMDefaultTextContainer: UIView, NSLayoutManagerDelegate, HMTextCont
     }
 
     public func layoutManager(layoutManager: NSLayoutManager, didCompleteLayoutForTextContainer textContainer: NSTextContainer?, atEnd layoutFinishedFlag: Bool) {
+        if !HMDefaultTextContainer.hasPrefix(textStorage, prefix: layoutAttributedString) {
+            self.layer.sublayers = nil
+        }
+
         layoutCounter++
-        let currentLayoutCounter = layoutCounter
+        layoutAttributedString = NSAttributedString(attributedString: textStorage)
 
-        self.layer.sublayers = nil
-
-        if layoutManager.numberOfGlyphs > 0 {
-            addTextLayerForGlyphIndex(0, startTime: CACurrentMediaTime(), currentLayoutCounter: currentLayoutCounter)
+        let start = self.layer.sublayers?.count ?? 0
+        if layoutManager.numberOfGlyphs > start {
+            addTextLayerForGlyphIndex(start, layoutCounter: layoutCounter)
         }
     }
 
-    func addTextLayerForGlyphIndex(glyphIndex: Int, startTime: CFTimeInterval, currentLayoutCounter: Int) {
-        if glyphIndex >= layoutManager.numberOfGlyphs || currentLayoutCounter != self.layoutCounter {
+    class func hasPrefix(string: NSAttributedString, prefix: NSAttributedString) -> Bool {
+        if string.length < prefix.length {
+            return false
+        }
+        return string.attributedSubstringFromRange(NSMakeRange(0, prefix.length)).isEqualToAttributedString(prefix)
+    }
+
+    func addTextLayerForGlyphIndex(glyphIndex: Int, layoutCounter: Int) {
+        if glyphIndex >= layoutManager.numberOfGlyphs || layoutCounter != self.layoutCounter {
             return
         }
         for var i = 0; i < HMDefaultTextContainer.groupSize && glyphIndex + i < layoutManager.numberOfGlyphs; i++ {
             let textLayer = createTextLayerForGlyphIndex(glyphIndex + i)
-            animateTextLayer(textLayer, startTime: startTime, index: glyphIndex + i)
+            animateTextLayer(textLayer, previousTextLayers: (layer.sublayers? ?? []) as [CATextLayer])
             layer.addSublayer(textLayer)
         }
         let time = dispatch_time(DISPATCH_TIME_NOW, Int64(HMDefaultTextContainer.groupInterval))
         dispatch_after(time, dispatch_get_main_queue()) { [weak self] in
-            self?.addTextLayerForGlyphIndex(glyphIndex + HMDefaultTextContainer.groupSize, startTime: startTime, currentLayoutCounter: currentLayoutCounter)
+            self?.addTextLayerForGlyphIndex(glyphIndex + HMDefaultTextContainer.groupSize, layoutCounter: layoutCounter)
             return
         }
     }
@@ -99,6 +110,6 @@ public class HMDefaultTextContainer: UIView, NSLayoutManagerDelegate, HMTextCont
         return NSAttributedString(string: string ?? "")
     }
 
-    public func animateTextLayer(textLayer: CATextLayer, startTime: CFTimeInterval, index: Int) {
+    public func animateTextLayer(textLayer: CATextLayer, previousTextLayers: [CATextLayer]) {
     }
 }

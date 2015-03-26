@@ -35,6 +35,10 @@ public class HMScene: SKScene {
 
     // MARK: - Filename
 
+    public class var sksFilename: String {
+        return classFilename
+    }
+
     class var classFilename: String {
         return NSStringFromClass(self).componentsSeparatedByString(".")[1]
     }
@@ -44,7 +48,7 @@ public class HMScene: SKScene {
     }
 
     class func unarchiveFromFile() -> HMScene {
-        let path = NSBundle.mainBundle().pathForResource(classFilename, ofType: "sks")!
+        let path = NSBundle.mainBundle().pathForResource(sksFilename, ofType: "sks")!
         let sceneData = NSData(contentsOfFile: path, options: .DataReadingMappedIfSafe, error: nil)!
         let archiver = NSKeyedUnarchiver(forReadingWithData: sceneData)
         archiver.setClass(classForKeyedUnarchiver(), forClassName: "SKScene")

@@ -68,11 +68,11 @@ public class HMScene: SKScene {
 
     func addFilenameLabel() {
         let label = SKLabelNode(text: filename)
-        label.fontSize = 64
+        label.fontSize = 30
         label.fontColor = SKColor.greenColor()
         label.horizontalAlignmentMode = .Right
-        label.verticalAlignmentMode = .Top
-        label.position = CGPoint(x: frame.width - 15, y: frame.height - 15)
+        label.verticalAlignmentMode = .Bottom
+        label.position = CGPoint(x: frame.width - 15, y: 15)
         label.zPosition = 100
         addChild(label)
     }

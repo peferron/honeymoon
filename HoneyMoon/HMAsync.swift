@@ -54,7 +54,7 @@ public class HMAsync {
     }
 
     class func recursiveSeries(actions: [Action], index: Int, completion: () -> Void) {
-        if actions.isEmpty || actions.count <= index {
+        if actions.count <= index {
             completion()
             return
         }

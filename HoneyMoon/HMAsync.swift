@@ -48,4 +48,18 @@ public class HMAsync {
         let time = dispatch_time(DISPATCH_TIME_NOW, nanoseconds)
         dispatch_after(time, dispatch_get_main_queue(), completion)
     }
+
+    public class func series(actions: [Action], completion: () -> Void) {
+        recursiveSeries(actions, index: 0, completion: completion)
+    }
+
+    class func recursiveSeries(actions: [Action], index: Int, completion: () -> Void) {
+        if actions.isEmpty || actions.count <= index {
+            completion()
+            return
+        }
+        actions[index] {
+            self.recursiveSeries(actions, index: index + 1, completion: completion)
+        }
+    }
 }

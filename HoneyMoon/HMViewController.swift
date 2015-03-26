@@ -31,7 +31,9 @@ public class HMViewController: UIViewController, HMSceneDelegate {
 
     public func didFinishForScene(scene: HMScene, nextSceneClass: HMScene.Type) {
         println("HMViewController: didFinishForScene: \(scene.filename) -> \(nextSceneClass.classFilename)")
-        presentScene(nextSceneClass)
+        dispatch_async(dispatch_get_main_queue()) {
+            self.presentScene(nextSceneClass)
+        }
     }
 
     // MARK: - Keys

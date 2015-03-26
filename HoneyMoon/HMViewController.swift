@@ -12,7 +12,7 @@ public class HMViewController: UIViewController, HMSceneDelegate {
         outgoing = incoming
 
         let incomingScene = sceneClass.unarchiveFromFile()
-        println("HMViewController: presentScene: \(incomingScene.filename)")
+        println("\nHMViewController: presentScene: \(incomingScene.filename)")
         incomingScene.scaleMode = .AspectFit
         incomingScene.sceneDelegate = self
         incoming = createSKView()

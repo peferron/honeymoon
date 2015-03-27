@@ -22,7 +22,7 @@ public class HMInterpolatingMotionEffect: UIInterpolatingMotionEffect {
         return [NSObject : AnyObject]()
     }
 
-    public class func moveBackground(background: SKNode, relativeToView view: UIView) {
+    public class func addMotionEffectToBackground(background: SKNode, relativeToView view: UIView, delta: CGVector) {
         //        let tiltGroup = childNodeWithName("//tilt_group")!
         //        var prevPosition = tiltGroup.position
         //        var prevDate: NSDate = NSDate()
@@ -57,11 +57,8 @@ public class HMInterpolatingMotionEffect: UIInterpolatingMotionEffect {
         //        }
         //        view?.addMotionEffect(groupEffect)
 
-        let deltaX = (background.frame.size.width - view.frame.size.width) / 2
-        let deltaY = (background.frame.size.height - view.frame.size.height) / 2
-
         let groupEffect = HMInterpolatingMotionEffectGroup { (horizontal, vertical) in
-            let newPosition = CGPoint(x: deltaX * CGFloat(horizontal), y: deltaY * CGFloat(vertical))
+            let newPosition = CGPoint(x: -delta.dx * CGFloat(horizontal), y: delta.dy * CGFloat(vertical))
             background.position = newPosition
         }
         view.addMotionEffect(groupEffect)

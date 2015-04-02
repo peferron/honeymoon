@@ -39,7 +39,7 @@ public class HMScene: SKScene {
         return classFilename
     }
 
-    class var classFilename: String {
+    public class var classFilename: String {
         return NSStringFromClass(self).componentsSeparatedByString(".")[1]
     }
 

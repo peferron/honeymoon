@@ -11,45 +11,15 @@ public class HMDefaultTextContainer: UIView, NSLayoutManagerDelegate, HMTextCont
     var layoutCounter = 0
     var layoutAttributedString = NSAttributedString(string: "")
 
-    public var text: String = "" {
-        didSet {
-            textStorage.setAttributedString(createAttributedString(text))
-        }
-    }
-
-    public var isAnimating: Bool {
-        if label != nil && label!.text?.utf16Count >= layoutManager.numberOfGlyphs {
-            return false
-        }
-        if textLayers.count < layoutManager.numberOfGlyphs {
-            return true
-        }
-        if layoutManager.numberOfGlyphs == 0 {
-            return false
-        }
-        return !isAnimationFinishedForTextLayers(textLayers)
-    }
-
-    public func finishAnimation() {
-        dispatch_async(dispatch_get_main_queue()) {
-            self.layoutCounter++
-            self.layer.sublayers = nil
-            self.label = self.createLabel()
-        }
-    }
-
-    public func createLabel() -> UILabel {
-        let label = UILabel(frame: bounds)
-        label.frame.origin.x += 5
-        label.numberOfLines = 0
-        label.attributedText = textStorage
-        label.sizeToFit()
-        return label
-    }
-
     override public var frame: CGRect {
         didSet {
             textContainer.size = bounds.size
+        }
+    }
+
+    public var text: String = "" {
+        didSet {
+            textStorage.setAttributedString(createAttributedString(text))
         }
     }
 
@@ -63,38 +33,27 @@ public class HMDefaultTextContainer: UIView, NSLayoutManagerDelegate, HMTextCont
         customInit()
     }
 
-    var label: UILabel? {
-        get {
-            return subviews.first? as? UILabel
-        }
-        set {
-            for subview in subviews {
-                subview.removeFromSuperview()
-            }
-            if newValue != nil {
-                addSubview(newValue!)
-            }
-        }
+    func customInit() {
+        textContainer.lineBreakMode = .ByWordWrapping
+        textContainer.size = bounds.size
+        textContainer.maximumNumberOfLines = 0
+
+        textStorage.addLayoutManager(layoutManager)
+        layoutManager.addTextContainer(textContainer)
+        layoutManager.delegate = self
     }
+
+    public func createAttributedString(string: String) -> NSAttributedString {
+        return NSAttributedString(string: string)
+    }
+
+    // MARK: - Text layers
 
     var textLayers: [CATextLayer] {
         if let sublayers = layer.sublayers {
             return sublayers.filter { $0 is CATextLayer } as [CATextLayer]
         }
         return []
-    }
-
-    func customInit() {
-        initTextContainer()
-        textStorage.addLayoutManager(layoutManager)
-        layoutManager.addTextContainer(textContainer)
-        layoutManager.delegate = self
-    }
-
-    func initTextContainer() {
-        textContainer.lineBreakMode = .ByWordWrapping
-        textContainer.size = bounds.size
-        textContainer.maximumNumberOfLines = 0
     }
 
     public func layoutManager(layoutManager: NSLayoutManager, didCompleteLayoutForTextContainer textContainer: NSTextContainer?, atEnd layoutFinishedFlag: Bool) {
@@ -112,13 +71,6 @@ public class HMDefaultTextContainer: UIView, NSLayoutManagerDelegate, HMTextCont
         if layoutManager.numberOfGlyphs > start {
             addTextLayerForGlyphIndex(start, layoutCounter: layoutCounter)
         }
-    }
-
-    class func hasPrefix(string: NSAttributedString, prefix: NSAttributedString) -> Bool {
-        if string.length < prefix.length {
-            return false
-        }
-        return string.attributedSubstringFromRange(NSMakeRange(0, prefix.length)).isEqualToAttributedString(prefix)
     }
 
     func addTextLayerForGlyphIndex(glyphIndex: Int, layoutCounter: Int) {
@@ -160,8 +112,26 @@ public class HMDefaultTextContainer: UIView, NSLayoutManagerDelegate, HMTextCont
         return textLayer
     }
 
-    public func createAttributedString(string: String) -> NSAttributedString {
-        return NSAttributedString(string: string)
+    class func hasPrefix(string: NSAttributedString, prefix: NSAttributedString) -> Bool {
+        if string.length < prefix.length {
+            return false
+        }
+        return string.attributedSubstringFromRange(NSMakeRange(0, prefix.length)).isEqualToAttributedString(prefix)
+    }
+
+    // MARK: - Animations
+
+    public var isAnimating: Bool {
+        if label != nil && label!.text?.utf16Count >= layoutManager.numberOfGlyphs {
+            return false
+        }
+        if textLayers.count < layoutManager.numberOfGlyphs {
+            return true
+        }
+        if layoutManager.numberOfGlyphs == 0 {
+            return false
+        }
+        return !isAnimationFinishedForTextLayers(textLayers)
     }
 
     public func animateTextLayer(textLayer: CATextLayer, previousTextLayers: [CATextLayer]) {
@@ -169,5 +139,38 @@ public class HMDefaultTextContainer: UIView, NSLayoutManagerDelegate, HMTextCont
 
     public func isAnimationFinishedForTextLayers(textLayers: [CATextLayer]) -> Bool {
         return true
+    }
+
+    public func finishAnimation() {
+        dispatch_async(dispatch_get_main_queue()) {
+            self.layoutCounter++
+            self.layer.sublayers = nil
+            self.label = self.createLabel()
+        }
+    }
+
+    // MARK: - Label
+
+    var label: UILabel? {
+        get {
+            return subviews.first? as? UILabel
+        }
+        set {
+            for subview in subviews {
+                subview.removeFromSuperview()
+            }
+            if newValue != nil {
+                addSubview(newValue!)
+            }
+        }
+    }
+
+    public func createLabel() -> UILabel {
+        let label = UILabel(frame: bounds)
+        label.frame.origin.x += 5
+        label.numberOfLines = 0
+        label.attributedText = textStorage
+        label.sizeToFit()
+        return label
     }
 }

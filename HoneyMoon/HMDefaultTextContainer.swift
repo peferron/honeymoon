@@ -9,12 +9,42 @@ public class HMDefaultTextContainer: UIView, NSLayoutManagerDelegate, HMTextCont
     let layoutManager = NSLayoutManager()
 
     var layoutCounter = 0
-    var layoutAttributedString: NSAttributedString = NSAttributedString(string: "")
+    var layoutAttributedString = NSAttributedString(string: "")
 
-    public var text: String? {
+    public var text: String = "" {
         didSet {
             textStorage.setAttributedString(createAttributedString(text))
         }
+    }
+
+    public var isAnimating: Bool {
+        if label != nil && label!.text?.utf16Count >= layoutManager.numberOfGlyphs {
+            return false
+        }
+        if textLayers.count < layoutManager.numberOfGlyphs {
+            return true
+        }
+        if layoutManager.numberOfGlyphs == 0 {
+            return false
+        }
+        return !isAnimationFinishedForTextLayers(textLayers)
+    }
+
+    public func finishAnimation() {
+        dispatch_async(dispatch_get_main_queue()) {
+            self.layoutCounter++
+            self.layer.sublayers = nil
+            self.label = self.createLabel()
+        }
+    }
+
+    public func createLabel() -> UILabel {
+        let label = UILabel(frame: bounds)
+        label.frame.origin.x += 5
+        label.numberOfLines = 0
+        label.attributedText = textStorage
+        label.sizeToFit()
+        return label
     }
 
     override public var frame: CGRect {
@@ -33,6 +63,27 @@ public class HMDefaultTextContainer: UIView, NSLayoutManagerDelegate, HMTextCont
         customInit()
     }
 
+    var label: UILabel? {
+        get {
+            return subviews.first? as? UILabel
+        }
+        set {
+            for subview in subviews {
+                subview.removeFromSuperview()
+            }
+            if newValue != nil {
+                addSubview(newValue!)
+            }
+        }
+    }
+
+    var textLayers: [CATextLayer] {
+        if let sublayers = layer.sublayers {
+            return sublayers.filter { $0 is CATextLayer } as [CATextLayer]
+        }
+        return []
+    }
+
     func customInit() {
         initTextContainer()
         textStorage.addLayoutManager(layoutManager)
@@ -48,13 +99,16 @@ public class HMDefaultTextContainer: UIView, NSLayoutManagerDelegate, HMTextCont
 
     public func layoutManager(layoutManager: NSLayoutManager, didCompleteLayoutForTextContainer textContainer: NSTextContainer?, atEnd layoutFinishedFlag: Bool) {
         if !HMDefaultTextContainer.hasPrefix(textStorage, prefix: layoutAttributedString) {
-            self.layer.sublayers = nil
+            label = nil
+            layer.sublayers = nil
         }
 
         layoutCounter++
         layoutAttributedString = NSAttributedString(attributedString: textStorage)
 
-        let start = self.layer.sublayers?.count ?? 0
+        let textLayerGlyphCount = textLayers.count
+        let labelGlyphCount = label?.text?.utf16Count ?? 0
+        let start = textLayerGlyphCount + labelGlyphCount
         if layoutManager.numberOfGlyphs > start {
             addTextLayerForGlyphIndex(start, layoutCounter: layoutCounter)
         }
@@ -73,7 +127,7 @@ public class HMDefaultTextContainer: UIView, NSLayoutManagerDelegate, HMTextCont
         }
         for var i = 0; i < HMDefaultTextContainer.groupSize && glyphIndex + i < layoutManager.numberOfGlyphs; i++ {
             let textLayer = createTextLayerForGlyphIndex(glyphIndex + i)
-            animateTextLayer(textLayer, previousTextLayers: (layer.sublayers? ?? []) as [CATextLayer])
+            animateTextLayer(textLayer, previousTextLayers: textLayers)
             layer.addSublayer(textLayer)
         }
         let time = dispatch_time(DISPATCH_TIME_NOW, Int64(HMDefaultTextContainer.groupInterval))
@@ -91,7 +145,7 @@ public class HMDefaultTextContainer: UIView, NSLayoutManagerDelegate, HMTextCont
         // To prevent that, if kerning is detected then the previous layer frame is extended to include the current glyph rect.
         var kerningRange = layoutManager.rangeOfNominallySpacedGlyphsContainingIndex(glyphIndex)
         if kerningRange.length > 0 && kerningRange.location == glyphIndex {
-            if let previousTextLayer = layer.sublayers?.last? as? CATextLayer {
+            if let previousTextLayer = textLayers.last {
                 previousTextLayer.frame.size.width += glyphRect.maxX - previousTextLayer.frame.maxX
             }
         }
@@ -106,10 +160,14 @@ public class HMDefaultTextContainer: UIView, NSLayoutManagerDelegate, HMTextCont
         return textLayer
     }
 
-    public func createAttributedString(string: String?) -> NSAttributedString {
-        return NSAttributedString(string: string ?? "")
+    public func createAttributedString(string: String) -> NSAttributedString {
+        return NSAttributedString(string: string)
     }
 
     public func animateTextLayer(textLayer: CATextLayer, previousTextLayers: [CATextLayer]) {
+    }
+
+    public func isAnimationFinishedForTextLayers(textLayers: [CATextLayer]) -> Bool {
+        return true
     }
 }

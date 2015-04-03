@@ -25,23 +25,17 @@ public class HMTextQueue {
         self.trigger = trigger
     }
 
-    public func print(text: String) -> HMTextQueue {
-        return setText(text, append: false)
-    }
-
-    public func append(text: String) -> HMTextQueue {
-        return setText(text, append: true)
-    }
-
-    func setText(text:String, append: Bool) -> HMTextQueue {
+    public func enqueueAttributedText(attributedText: NSAttributedString, append: Bool) -> HMTextQueue {
         return enqueue { completion in
             dispatch_async(dispatch_get_main_queue()) {
                 // No need for an [unowned self] or [weak self] here, the queue will only be deallocated after all GCD
                 // closures are executed.
                 if append {
-                    self.container.text += text
+                    let mut = self.container.attributedText.mutableCopy() as NSMutableAttributedString
+                    mut.appendAttributedString(attributedText)
+                    self.container.attributedText = mut
                 } else {
-                    self.container.text = text
+                    self.container.attributedText = attributedText
                 }
                 self.handleContainerAnimation(completion)
             }

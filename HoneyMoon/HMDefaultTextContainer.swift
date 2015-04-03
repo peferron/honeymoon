@@ -9,7 +9,7 @@ public class HMDefaultTextContainer: UIView, NSLayoutManagerDelegate, HMTextCont
     let layoutManager = NSLayoutManager()
 
     var layoutCounter = 0
-    var layoutAttributedString = NSAttributedString(string: "")
+    var layoutAttributedText = NSAttributedString(string: "")
 
     override public var frame: CGRect {
         didSet {
@@ -17,9 +17,9 @@ public class HMDefaultTextContainer: UIView, NSLayoutManagerDelegate, HMTextCont
         }
     }
 
-    public var text: String = "" {
+    public var attributedText: NSAttributedString = NSAttributedString(string: "") {
         didSet {
-            textStorage.setAttributedString(createAttributedString(text))
+            textStorage.setAttributedString(attributedText)
         }
     }
 
@@ -43,10 +43,6 @@ public class HMDefaultTextContainer: UIView, NSLayoutManagerDelegate, HMTextCont
         layoutManager.delegate = self
     }
 
-    public func createAttributedString(string: String) -> NSAttributedString {
-        return NSAttributedString(string: string)
-    }
-
     // MARK: - Text layers
 
     var textLayers: [CATextLayer] {
@@ -57,13 +53,13 @@ public class HMDefaultTextContainer: UIView, NSLayoutManagerDelegate, HMTextCont
     }
 
     public func layoutManager(layoutManager: NSLayoutManager, didCompleteLayoutForTextContainer textContainer: NSTextContainer?, atEnd layoutFinishedFlag: Bool) {
-        if !HMDefaultTextContainer.hasPrefix(textStorage, prefix: layoutAttributedString) {
+        if !HMDefaultTextContainer.hasPrefix(textStorage, prefix: layoutAttributedText) {
             label = nil
             layer.sublayers = nil
         }
 
         layoutCounter++
-        layoutAttributedString = NSAttributedString(attributedString: textStorage)
+        layoutAttributedText = NSAttributedString(attributedString: textStorage)
 
         let textLayerGlyphCount = textLayers.count
         let labelGlyphCount = label?.text?.utf16Count ?? 0

@@ -117,17 +117,17 @@ public class HMDefaultTextContainer: UIView, NSLayoutManagerDelegate, HMTextCont
 
     // MARK: - Animations
 
-    public var isAnimating: Bool {
+    public var isAnimationFinished: Bool {
         if label != nil && label!.text?.utf16Count >= layoutManager.numberOfGlyphs {
-            return false
-        }
-        if textLayers.count < layoutManager.numberOfGlyphs {
             return true
         }
-        if layoutManager.numberOfGlyphs == 0 {
+        if textLayers.count < layoutManager.numberOfGlyphs {
             return false
         }
-        return !isAnimationFinishedForTextLayers(textLayers)
+        if layoutManager.numberOfGlyphs == 0 {
+            return true
+        }
+        return isAnimationFinishedForTextLayers(textLayers)
     }
 
     public func animateTextLayer(textLayer: CATextLayer, previousTextLayers: [CATextLayer]) {

@@ -44,11 +44,11 @@ public class HMTextQueue {
 
     func handleContainerAnimation(completion: () -> Void) {
         trigger {
-            if self.container.isAnimating {
+            if self.container.isAnimationFinished {
+                completion()
+            } else {
                 self.container.finishAnimation()
                 self.handleContainerAnimation(completion)
-            } else {
-                completion()
             }
         }
     }

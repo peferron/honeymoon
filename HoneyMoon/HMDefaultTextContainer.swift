@@ -47,7 +47,7 @@ public class HMDefaultTextContainer: UIView, NSLayoutManagerDelegate, HMTextCont
 
     var textLayers: [CATextLayer] {
         if let sublayers = layer.sublayers {
-            return sublayers.filter { $0 is CATextLayer } as [CATextLayer]
+            return sublayers.filter { $0 is CATextLayer } as! [CATextLayer]
         }
         return []
     }
@@ -62,7 +62,7 @@ public class HMDefaultTextContainer: UIView, NSLayoutManagerDelegate, HMTextCont
         layoutAttributedText = NSAttributedString(attributedString: textStorage)
 
         let textLayerGlyphCount = textLayers.count
-        let labelGlyphCount = label?.text?.utf16Count ?? 0
+        let labelGlyphCount = label?.text != nil ? count(label!.text!.utf16) : 0
         let start = textLayerGlyphCount + labelGlyphCount
         if layoutManager.numberOfGlyphs > start {
             addTextLayerForGlyphIndex(start, layoutCounter: layoutCounter)
@@ -118,7 +118,7 @@ public class HMDefaultTextContainer: UIView, NSLayoutManagerDelegate, HMTextCont
     // MARK: - Animations
 
     public var isAnimationFinished: Bool {
-        if label != nil && label!.text?.utf16Count >= layoutManager.numberOfGlyphs {
+        if label?.text != nil && count(label!.text!.utf16) >= layoutManager.numberOfGlyphs {
             return true
         }
         if textLayers.count < layoutManager.numberOfGlyphs {
@@ -149,7 +149,7 @@ public class HMDefaultTextContainer: UIView, NSLayoutManagerDelegate, HMTextCont
 
     var label: UILabel? {
         get {
-            return subviews.first? as? UILabel
+            return subviews.first as? UILabel
         }
         set {
             for subview in subviews {

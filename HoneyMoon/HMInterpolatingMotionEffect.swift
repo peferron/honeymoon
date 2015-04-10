@@ -17,7 +17,7 @@ public class HMInterpolatingMotionEffect: UIInterpolatingMotionEffect {
 
     override public func keyPathsAndRelativeValuesForViewerOffset(viewerOffset: UIOffset) -> [NSObject : AnyObject]! {
         let dict = super.keyPathsAndRelativeValuesForViewerOffset(viewerOffset)
-        let value = dict[HMInterpolatingMotionEffect.key] as Float
+        let value = dict[HMInterpolatingMotionEffect.key] as! Float
         callback?(value)
         return [NSObject : AnyObject]()
     }

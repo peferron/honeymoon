@@ -31,7 +31,7 @@ public class HMTextQueue {
                 // No need for an [unowned self] or [weak self] here, the queue will only be deallocated after all GCD
                 // closures are executed.
                 if append {
-                    let mut = self.container.attributedText.mutableCopy() as NSMutableAttributedString
+                    let mut = self.container.attributedText.mutableCopy() as! NSMutableAttributedString
                     mut.appendAttributedString(attributedText)
                     self.container.attributedText = mut
                 } else {

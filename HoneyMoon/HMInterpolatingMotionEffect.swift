@@ -2,10 +2,8 @@ import UIKit
 import SpriteKit
 
 public class HMInterpolatingMotionEffect: UIInterpolatingMotionEffect {
-    class var key: String {
-        return "key"
-    }
-
+    static let key = "key"
+    
     var callback: (Float -> Void)?
 
     convenience public init(type: UIInterpolatingMotionEffectType, callback: Float -> Void) {

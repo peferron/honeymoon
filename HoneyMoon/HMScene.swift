@@ -57,18 +57,7 @@ public class HMScene: SKScene {
         return scene
     }
 
-    // Class variables are not yet supported. A workaround is to use a static var in a private struct.
-    private struct DebugShowFilenameWrapper {
-        static var value: Bool = false
-    }
-    public class var debugShowFilename: Bool {
-        get {
-            return DebugShowFilenameWrapper.value
-        }
-        set {
-            DebugShowFilenameWrapper.value = newValue
-        }
-    }
+    public static var debugShowFilename = false
 
     func addFilenameLabel() {
         let label = SKLabelNode(text: filename)

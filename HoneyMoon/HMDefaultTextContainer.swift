@@ -1,8 +1,8 @@
 import UIKit
 
 public class HMDefaultTextContainer: UIView, NSLayoutManagerDelegate, HMTextContainer {
-    class var groupSize: Int { return 10 }
-    class var groupInterval: UInt64 { return 20 * NSEC_PER_MSEC }
+    static let groupSize = 10
+    static let groupInterval = 20 * NSEC_PER_MSEC
 
     let textStorage = NSTextStorage()
     let textContainer = NSTextContainer()
@@ -100,7 +100,7 @@ public class HMDefaultTextContainer: UIView, NSLayoutManagerDelegate, HMTextCont
 
         let characterRange = layoutManager.characterRangeForGlyphRange(glyphRange, actualGlyphRange: nil)
 
-        var textLayer = CATextLayer()
+        let textLayer = CATextLayer()
         textLayer.frame = glyphRect
         textLayer.string = textStorage.attributedSubstringFromRange(characterRange)
         textLayer.contentsScale = UIScreen.mainScreen().scale

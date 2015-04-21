@@ -1,5 +1,5 @@
 import SpriteKit
 
 public protocol HMSceneDelegate: class {
-    func didFinishForScene(scene: HMScene, nextSceneClass: HMScene.Type)
+    func didFinishForScene(sender: HMScene, nextSceneClass: HMScene.Type)
 }

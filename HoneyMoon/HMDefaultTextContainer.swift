@@ -141,11 +141,12 @@ public class HMDefaultTextContainer: UIView, NSLayoutManagerDelegate, HMTextCont
     }
 
     public func finishAnimation() {
-        dispatch_async(dispatch_get_main_queue()) {
-            self.layoutCounter++
-            self.layer.sublayers = nil
-            self.label = self.createLabel()
-        }
+        // Disabled until the UILabel and the CATextLayers can get perfectly aligned.
+//        dispatch_async(dispatch_get_main_queue()) {
+//            self.layoutCounter++
+//            self.layer.sublayers = nil
+//            self.label = self.createLabel()
+//        }
     }
 
     // MARK: - Label

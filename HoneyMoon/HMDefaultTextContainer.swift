@@ -98,6 +98,9 @@ public class HMDefaultTextContainer: UIView, NSLayoutManagerDelegate, HMTextCont
             }
         }
 
+        // Letters that reach far down, like "y", have an underestimated glyphRect height and get cropped.
+        glyphRect.size.height *= 2
+
         let characterRange = layoutManager.characterRangeForGlyphRange(glyphRange, actualGlyphRange: nil)
 
         let textLayer = CATextLayer()

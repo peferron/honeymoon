@@ -5,12 +5,12 @@ public class HMTextQueue {
 
     let queue = dispatch_queue_create("HMTextQueue", nil)
 
-    public func run(action: () -> Void) -> HMTextQueue {
+    public func run(action: () -> Void) -> Self {
         dispatch_async(queue, action)
         return self
     }
 
-    func enqueue(action: HMAsync.Action) -> HMTextQueue {
+    func enqueue(action: HMAsync.Action) -> Self {
         dispatch_async(queue) { HMAsync.sync(action) }
         return self
     }
@@ -25,7 +25,7 @@ public class HMTextQueue {
         self.trigger = trigger
     }
 
-    public func enqueueAttributedText(attributedText: NSAttributedString, append: Bool) -> HMTextQueue {
+    public func enqueueAttributedText(attributedText: NSAttributedString, append: Bool) -> Self {
         return enqueue { completion in
             dispatch_async(dispatch_get_main_queue()) {
                 // No need for an [unowned self] or [weak self] here, the queue will only be deallocated after all GCD

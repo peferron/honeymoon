@@ -25,8 +25,8 @@ public class HMTextQueue {
         self.trigger = trigger
     }
 
-    public func enqueueAttributedText(attributedText: NSAttributedString, append: Bool) -> Self {
-        return enqueue { completion in
+    public func enqueueAttributedText(attributedText: NSAttributedString, append: Bool, completion: () -> Void) -> Self {
+        return enqueue { enqueueCompletion in
             dispatch_async(dispatch_get_main_queue()) {
                 // No need for an [unowned self] or [weak self] here, the queue will only be deallocated after all GCD
                 // closures are executed.
@@ -37,7 +37,10 @@ public class HMTextQueue {
                 } else {
                     self.container.attributedText = attributedText
                 }
-                self.handleContainerAnimation(completion)
+                self.handleContainerAnimation {
+                    completion()
+                    enqueueCompletion()
+                }
             }
         }
     }

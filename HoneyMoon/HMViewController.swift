@@ -1,30 +1,30 @@
 import SpriteKit
 
 public class HMViewController: UIViewController, HMSceneDelegate {
-    var incoming: SKView?
-    var outgoing: SKView?
+    public var incomingView: SKView?
+    public var outgoingView: SKView?
 
     public func createSKView() -> SKView {
         return SKView(frame: view.bounds)
     }
 
     public func presentScene(sceneClass: HMScene.Type) {
-        outgoing = incoming
+        outgoingView = incomingView
 
         let incomingScene = sceneClass.unarchiveFromFile()
         println("\nHMViewController: presentScene: \(incomingScene.filename)")
         incomingScene.scaleMode = .AspectFit
         incomingScene.sceneDelegate = self
-        incoming = createSKView()
-        incoming?.ignoresSiblingOrder = true
+        incomingView = createSKView()
+        incomingView?.ignoresSiblingOrder = true
 
         // Default behavior is to remove the outgoing view, but in more sophisticated transitions we might want to keep
         // both incoming and outgoing views alive for a while.
-        outgoing?.removeFromSuperview()
-        view.addSubview(incoming!)
-        view.sendSubviewToBack(incoming!)
+        outgoingView?.removeFromSuperview()
+        view.addSubview(incomingView!)
+        view.sendSubviewToBack(incomingView!)
 
-        incoming?.presentScene(incomingScene)
+        incomingView?.presentScene(incomingScene)
     }
 
     // MARK: - HMSceneDelegate
@@ -80,7 +80,7 @@ public class HMViewController: UIViewController, HMSceneDelegate {
     }
 
     func forwardKey(key: String) {
-        (incoming?.scene as? HMScene)?.didReceiveKey(key)
+        (incomingView?.scene as? HMScene)?.didReceiveKey(key)
     }
 
     // MARK: - UIViewController boilerplate

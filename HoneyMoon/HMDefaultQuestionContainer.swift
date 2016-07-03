@@ -1,7 +1,7 @@
 import UIKit
 
 public class HMDefaultQuestionContainer: UIVisualEffectView {
-    public required init(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
@@ -26,13 +26,13 @@ public class HMDefaultQuestionContainer: UIVisualEffectView {
             self.hidden = false
 
             for i in 0..<choices.count {
-                let button = UIButton.buttonWithType(.System) as! UIButton
+                let button = UIButton(type: .System)
                 button.associatedObject = Block<() -> ()>({ [unowned self] in
                     self.hidden = true
                     vibrancyView.removeFromSuperview()
                     completion(i)
                 })
-                button.addTarget(self, action: "buttonTouchedUpInside:", forControlEvents: .TouchUpInside)
+                button.addTarget(self, action: #selector(HMDefaultQuestionContainer.buttonTouchedUpInside(_:)), forControlEvents: .TouchUpInside)
 
                 button.setTitle(choices[i], forState: .Normal)
                 button.titleLabel?.font = UIFont.systemFontOfSize(64)

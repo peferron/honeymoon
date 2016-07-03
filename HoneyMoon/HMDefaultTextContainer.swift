@@ -28,7 +28,7 @@ public class HMDefaultTextContainer: UIView, NSLayoutManagerDelegate, HMTextCont
         customInit()
     }
 
-    required public init(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         customInit()
     }
@@ -58,11 +58,11 @@ public class HMDefaultTextContainer: UIView, NSLayoutManagerDelegate, HMTextCont
             layer.sublayers = nil
         }
 
-        layoutCounter++
+        layoutCounter += 1
         layoutAttributedText = NSAttributedString(attributedString: textStorage)
 
         let textLayerGlyphCount = textLayers.count
-        let labelGlyphCount = label?.text != nil ? count(label!.text!.utf16) : 0
+        let labelGlyphCount = label?.text != nil ? label!.text!.utf16.count : 0
         let start = textLayerGlyphCount + labelGlyphCount
         if layoutManager.numberOfGlyphs > start {
             addTextLayerForGlyphIndex(start, layoutCounter: layoutCounter)
@@ -73,7 +73,7 @@ public class HMDefaultTextContainer: UIView, NSLayoutManagerDelegate, HMTextCont
         if glyphIndex >= layoutManager.numberOfGlyphs || layoutCounter != self.layoutCounter {
             return
         }
-        for var i = 0; i < HMDefaultTextContainer.groupSize && glyphIndex + i < layoutManager.numberOfGlyphs; i++ {
+        for i in 0..<min(HMDefaultTextContainer.groupSize, layoutManager.numberOfGlyphs - glyphIndex) {
             let textLayer = createTextLayerForGlyphIndex(glyphIndex + i)
             animateTextLayer(textLayer, previousTextLayers: textLayers)
             layer.addSublayer(textLayer)
@@ -91,7 +91,7 @@ public class HMDefaultTextContainer: UIView, NSLayoutManagerDelegate, HMTextCont
 
         // Kerning can cause the previous glyph to be cropped. Examples: the "r" in "Summer.", or the "y" in "Literally.".
         // To prevent that, if kerning is detected then the previous layer frame is extended to include the current glyph rect.
-        var kerningRange = layoutManager.rangeOfNominallySpacedGlyphsContainingIndex(glyphIndex)
+        let kerningRange = layoutManager.rangeOfNominallySpacedGlyphsContainingIndex(glyphIndex)
         if kerningRange.length > 0 && kerningRange.location == glyphIndex {
             if let previousTextLayer = textLayers.last {
                 previousTextLayer.frame.size.width += glyphRect.maxX - previousTextLayer.frame.maxX
@@ -121,7 +121,7 @@ public class HMDefaultTextContainer: UIView, NSLayoutManagerDelegate, HMTextCont
     // MARK: - Animations
 
     public var isAnimationFinished: Bool {
-        if label?.text != nil && count(label!.text!.utf16) >= layoutManager.numberOfGlyphs {
+        if label?.text != nil && label!.text!.utf16.count >= layoutManager.numberOfGlyphs {
             return true
         }
         if textLayers.count < layoutManager.numberOfGlyphs {

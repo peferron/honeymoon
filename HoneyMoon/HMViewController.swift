@@ -12,7 +12,7 @@ public class HMViewController: UIViewController, HMSceneDelegate {
         outgoingView = incomingView
 
         let incomingScene = sceneClass.unarchiveFromFile()
-        println("\nHMViewController: presentScene: \(incomingScene.filename)")
+        print("\nHMViewController: presentScene: \(incomingScene.filename)")
         incomingScene.scaleMode = .AspectFit
         incomingScene.sceneDelegate = self
         incomingView = createSKView()
@@ -30,7 +30,7 @@ public class HMViewController: UIViewController, HMSceneDelegate {
     // MARK: - HMSceneDelegate
 
     public func didFinishForScene(scene: HMScene, nextSceneClass: HMScene.Type) {
-        println("HMViewController: didFinishForScene: \(scene.filename) -> \(nextSceneClass.classFilename)")
+        print("HMViewController: didFinishForScene: \(scene.filename) -> \(nextSceneClass.classFilename)")
         dispatch_async(dispatch_get_main_queue()) {
             self.presentScene(nextSceneClass)
         }
@@ -39,15 +39,15 @@ public class HMViewController: UIViewController, HMSceneDelegate {
     // MARK: - Keys
 
     let cachedkeyCommands = [
-        UIKeyCommand(input: "w", modifierFlags: nil, action: "didReceiveKeyW"),
-        UIKeyCommand(input: "a", modifierFlags: nil, action: "didReceiveKeyA"),
-        UIKeyCommand(input: "s", modifierFlags: nil, action: "didReceiveKeyS"),
-        UIKeyCommand(input: "d", modifierFlags: nil, action: "didReceiveKeyD"),
-        UIKeyCommand(input: "r", modifierFlags: nil, action: "didReceiveKeyR"),
-        UIKeyCommand(input: "f", modifierFlags: nil, action: "didReceiveKeyF"),
+        UIKeyCommand(input: "w", modifierFlags: [], action: #selector(didReceiveKeyW)),
+        UIKeyCommand(input: "a", modifierFlags: [], action: #selector(didReceiveKeyA)),
+        UIKeyCommand(input: "s", modifierFlags: [], action: #selector(didReceiveKeyS)),
+        UIKeyCommand(input: "d", modifierFlags: [], action: #selector(didReceiveKeyD)),
+        UIKeyCommand(input: "r", modifierFlags: [], action: #selector(didReceiveKeyR)),
+        UIKeyCommand(input: "f", modifierFlags: [], action: #selector(didReceiveKeyF)),
     ]
 
-    override public var keyCommands: [AnyObject]? {
+    override public var keyCommands: [UIKeyCommand]? {
         return cachedkeyCommands
     }
 
@@ -89,8 +89,8 @@ public class HMViewController: UIViewController, HMSceneDelegate {
         return true
     }
 
-    override public func supportedInterfaceOrientations() -> Int {
-        return Int(UIInterfaceOrientationMask.Landscape.rawValue)
+    override public func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.Landscape
     }
 
     override public func prefersStatusBarHidden() -> Bool {

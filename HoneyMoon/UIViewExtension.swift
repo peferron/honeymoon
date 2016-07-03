@@ -8,7 +8,7 @@ extension UIView {
             return objc_getAssociatedObject(self, &UIView.associatedObjectKey)
         }
         set {
-            objc_setAssociatedObject(self, &UIView.associatedObjectKey, newValue, objc_AssociationPolicy(OBJC_ASSOCIATION_RETAIN))
+            objc_setAssociatedObject(self, &UIView.associatedObjectKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
         }
     }
 }

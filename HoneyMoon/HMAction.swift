@@ -43,22 +43,22 @@ public class HMAction: SKAction {
 
     // MARK: - Zoom
 
-    public class func zoomTo(#scale: CGFloat, location: CGPoint, duration: NSTimeInterval, easing: CGFloat -> CGFloat) -> SKAction {
+    public class func zoomTo(location: CGPoint, scale: CGFloat, duration: NSTimeInterval, easing: CGFloat -> CGFloat) -> SKAction {
         let scaledLocation = locationAtScale(location, scale)
         let scaleAction = scaleTo(scale, duration: duration, easing: easing)
         let moveAction = moveTo(scaledLocation, duration: duration, easing: easing)
         return group([scaleAction, moveAction])
     }
 
-    public class func zoomInTo(#scale: CGFloat, location: CGPoint, duration: NSTimeInterval) -> SKAction {
-        return zoomTo(scale: scale, location: location, duration: duration, easing: HMEasing.expoEaseIn)
+    public class func zoomInTo(location: CGPoint, scale: CGFloat, duration: NSTimeInterval) -> SKAction {
+        return zoomTo(location, scale: scale, duration: duration, easing: HMEasing.expoEaseIn)
     }
 
-    public class func zoomOutTo(#scale: CGFloat, location: CGPoint, duration: NSTimeInterval) -> SKAction {
-        return zoomTo(scale: scale, location: location, duration: duration, easing: HMEasing.expoEaseOut)
+    public class func zoomOutTo(location: CGPoint, scale: CGFloat, duration: NSTimeInterval) -> SKAction {
+        return zoomTo(location, scale: scale, duration: duration, easing: HMEasing.expoEaseOut)
     }
 
-    public class func zoomImmediately(node: SKNode, scale: CGFloat, location: CGPoint) {
+    public class func zoomImmediately(node: SKNode, location: CGPoint, scale: CGFloat) {
         node.setScale(scale)
         node.position = locationAtScale(location, scale)
     }
@@ -84,10 +84,10 @@ public class HMAction: SKAction {
 
     public class func adjustZoom(node: SKNode, scale: CGFloat, location: CGVector) {
         assert(node.xScale == node.yScale, "node should have equal xScale and yScale")
-        let adjustedScale = node.xScale + scale
         let adjustedLocation = CGPoint(x: -node.position.x / node.xScale + location.dx, y: -node.position.y / node.yScale + location.dy)
-        println("adjustZoom, scale: \(adjustedScale), location: \(adjustedLocation)")
-        zoomImmediately(node, scale: adjustedScale, location: adjustedLocation)
+        let adjustedScale = node.xScale + scale
+        print("adjustZoom, location: \(adjustedLocation), scale: \(adjustedScale)")
+        zoomImmediately(node, location: adjustedLocation, scale: adjustedScale)
     }
 
     class func locationAtScale(location: CGPoint, _ scale: CGFloat) -> CGPoint {

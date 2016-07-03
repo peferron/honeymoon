@@ -13,11 +13,12 @@ public class HMInterpolatingMotionEffect: UIInterpolatingMotionEffect {
         maximumRelativeValue = 1
     }
 
-    override public func keyPathsAndRelativeValuesForViewerOffset(viewerOffset: UIOffset) -> [NSObject : AnyObject]! {
+    override public func keyPathsAndRelativeValuesForViewerOffset(viewerOffset: UIOffset) -> [String : AnyObject]? {
         let dict = super.keyPathsAndRelativeValuesForViewerOffset(viewerOffset)
-        let value = dict[HMInterpolatingMotionEffect.key] as! Float
-        callback?(value)
-        return [NSObject : AnyObject]()
+        if let value = dict?[HMInterpolatingMotionEffect.key] as? Float {
+            callback?(value)
+        }
+        return [String : AnyObject]()
     }
 
     public class func addMotionEffectToBackground(background: SKNode, relativeToView view: UIView, delta: CGVector) {

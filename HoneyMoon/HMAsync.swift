@@ -25,7 +25,7 @@ public class HMAsync {
                         return
                     } 
                     done = true
-                    pending--
+                    pending -= 1
                     if pending == 0 {
                         completion()
                     }

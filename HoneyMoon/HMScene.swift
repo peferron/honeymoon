@@ -21,7 +21,7 @@ public class HMScene: SKScene {
         }
     }
 
-    override public func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override public func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
 //        for touch: AnyObject in touches {
 //            let location = touch.locationInNode(self)
 //            println("Touch, x: \(location.x), y: \(location.y)")
@@ -30,7 +30,7 @@ public class HMScene: SKScene {
     }
 
     public func didReceiveKey(key: String) {
-        println("didReceiveKey: \(key)")
+        print("didReceiveKey: \(key)")
     }
 
     // MARK: - Filename
@@ -49,7 +49,7 @@ public class HMScene: SKScene {
 
     class func unarchiveFromFile() -> HMScene {
         let path = NSBundle.mainBundle().pathForResource(sksFilename, ofType: "sks")!
-        let sceneData = NSData(contentsOfFile: path, options: .DataReadingMappedIfSafe, error: nil)!
+        let sceneData = try! NSData(contentsOfFile: path, options: .DataReadingMappedIfSafe)
         let archiver = NSKeyedUnarchiver(forReadingWithData: sceneData)
         archiver.setClass(classForKeyedUnarchiver(), forClassName: "SKScene")
         let scene = archiver.decodeObjectForKey(NSKeyedArchiveRootObjectKey) as! HMScene
